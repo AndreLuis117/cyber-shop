@@ -4,22 +4,23 @@ import java.util.Date;
 
 public class Promotion {
 	
-	private long promotionId;
-	private String promotionName;
+	private long promoId;
+	private String promoName;
 	private String description;
 	private Date initialDate;
 	private Date finalDate;
-	public long getPromotionId() {
-		return promotionId;
+	
+	public long getPromoId() {
+		return promoId;
 	}
-	public void setPromotionId(long promotionId) {
-		this.promotionId = promotionId;
+	public void setPromoId(long promoId) {
+		this.promoId = promoId;
 	}
-	public String getPromotionName() {
-		return promotionName;
+	public String getPromoName() {
+		return promoName;
 	}
-	public void setPromotionName(String promotionName) {
-		this.promotionName = promotionName;
+	public void setPromoName(String promoName) {
+		this.promoName = promoName;
 	}
 	public String getDescription() {
 		return description;
@@ -39,5 +40,4 @@ public class Promotion {
 	public void setFinalDate(Date finalDate) {
 		this.finalDate = finalDate;
 	}
-
 }

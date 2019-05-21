@@ -2,9 +2,18 @@ package br.com.cybershop.model;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 public class Exit {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long exitId;
+	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date date;
 	private float quantity;
 	

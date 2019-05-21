@@ -2,9 +2,20 @@ package br.com.cybershop.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Client {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long clientId;
+	@Column(length=800)
 	private String name;
 	private String lastname;
 	private long cpf;
@@ -12,6 +23,8 @@ public class Client {
 	private String phoneNumber;
 	private String password;
 	private Boolean genre;
+	
+	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date birthDate;
 	private int cep;
 	private String adress;

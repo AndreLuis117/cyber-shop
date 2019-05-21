@@ -1,10 +1,18 @@
 package br.com.cybershop.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Product {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long productId;
 	private String name;
 	private Double unitPrice;
+	@Column(length=800)
 	private String description;
 	private String brand;
 	

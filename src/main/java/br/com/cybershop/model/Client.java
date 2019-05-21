@@ -29,6 +29,7 @@ public class Client {
 	private int cep;
 	private String adress;
 	
+	
 	public long getClientId() {
 		return clientId;
 	}

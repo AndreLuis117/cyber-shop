@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +23,11 @@ public class ClientController {
 	public ModelAndView index() {
 		List<Client> list = clientService.getAll();
 		 return new ModelAndView("client/index", "clients", list);
+	}
+		 
+	@GetMapping("/new")
+	public ModelAndView createForm(@ModelAttribute Client client) {
+		return new ModelAndView("client/form");
 	}
 
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
+@Entity(name="OrderSales")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

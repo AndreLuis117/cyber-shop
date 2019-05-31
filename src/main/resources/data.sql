@@ -1,1 +1,1 @@
-INSERT INTO
+INSERT INTO client (cep,cpf) values('89201100','47474724723');

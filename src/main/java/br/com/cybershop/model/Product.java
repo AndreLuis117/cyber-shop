@@ -54,6 +54,12 @@ public class Product {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
+	public ProductCategory getProdCat() {
+		return prodCat;
+	}
+	public void setProdCat(ProductCategory prodCat) {
+		this.prodCat = prodCat;
+	}
 	
 
 }

@@ -43,5 +43,12 @@ public class Catalog {
 	public void setDeadLine(Date deadLine) {
 		this.deadLine = deadLine;
 	}
+	public List<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(List<Product> product) {
+		this.product = product;
+	}
+	
 	
 }

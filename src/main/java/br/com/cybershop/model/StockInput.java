@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-public class Entry {
+public class StockInput {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,6 +44,12 @@ public class Entry {
 	}
 	public void setQuantity(float quantity) {
 		this.quantity = quantity;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	

@@ -40,4 +40,5 @@ public class Promotion {
 	public void setFinalDate(Date finalDate) {
 		this.finalDate = finalDate;
 	}
+	
 }

@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Exit {
+public class StockOutput {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

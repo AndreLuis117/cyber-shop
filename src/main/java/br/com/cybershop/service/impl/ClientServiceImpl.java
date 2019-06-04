@@ -20,4 +20,10 @@ public class ClientServiceImpl implements ClientService {
 		return repository.findAll();
 	}
 
+	@Override
+	public void save(Client client) {
+		// TODO Auto-generated method stub
+		repository.save(client);
+	}
+
 }

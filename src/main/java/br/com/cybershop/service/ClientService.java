@@ -9,4 +9,6 @@ import br.com.cybershop.model.Client;
 @Service
 public interface ClientService {
 	List<Client> getAll();
+	void save(Client client);
 }
+

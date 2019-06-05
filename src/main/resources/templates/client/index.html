@@ -18,7 +18,7 @@
 				<tr scope="row" th:each="umcliente : ${clients}">
 					<td th:text="${umcliente.name}"></td>
 					<td th:text="${umcliente.birthDate}"></td>
-					<td> <a th:href="@{'/client/edit/' + ${umcliente.clientId}}" class= "btn btn-primary btn-lg"></a></td>
+					<td> <a th:href="@{'/client/edit/' + ${umcliente.clientId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
 				</tr>
 			</tbody>
 		</table>

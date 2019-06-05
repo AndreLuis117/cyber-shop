@@ -9,12 +9,16 @@
 		<table class="table">
 			<thead class="thead-light"> 
 				<tr>
-					<th scope="col">Name</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Data de nascimento</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<tr scope="row" th:each="umcliente : ${clients}">
 					<td th:text="${umcliente.name}"></td>
+					<td th:text="${umcliente.birthDate}"></td>
+					<td> <a th:href="@{'/client/edit/' + ${umcliente.clientId}}" class= "btn btn-primary btn-lg"></a></td>
 				</tr>
 			</tbody>
 		</table>

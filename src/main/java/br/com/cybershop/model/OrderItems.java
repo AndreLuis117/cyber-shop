@@ -17,10 +17,10 @@ public class OrderItems {
 	
 	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=false)
 	private Product product;
-	
-	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=false)
+	//
+	@ManyToOne(cascade= CascadeType.ALL)
 	private Order order;
-	
+	//
 	public int getQuantity() {
 		return quantity;
 	}

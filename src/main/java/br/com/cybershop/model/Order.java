@@ -1,11 +1,15 @@
 package br.com.cybershop.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,7 +23,10 @@ public class Order {
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date orderDate; 
 	private String orderStatus;
-	
+	//
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<OrderItems> OrderItem = new ArrayList<OrderItems>(); 
+	//
 	public long getOrderId() {
 		return orderId;
 	}

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,7 +20,10 @@ public class PromoItems {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Product> ItemsPromo = new ArrayList<Product>(); 
-	
+	//
+	@ManyToOne(cascade= CascadeType.ALL)
+	private Promotion promotion;
+	//
 	public int getQuantity() {
 		return quantity;
 	}

@@ -1,6 +1,11 @@
 package br.com.cybershop.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 public class Promotion {
 	
@@ -9,7 +14,10 @@ public class Promotion {
 	private String description;
 	private Date initialDate;
 	private Date finalDate;
-	
+	//
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<PromoItems> PromoItem = new ArrayList<PromoItems>(); 
+	//
 	public long getPromoId() {
 		return promoId;
 	}

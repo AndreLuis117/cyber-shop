@@ -10,5 +10,6 @@ import br.com.cybershop.model.Client;
 public interface ClientService {
 	List<Client> getAll();
 	void save(Client client);
+	void delete(Client client);
 }
 

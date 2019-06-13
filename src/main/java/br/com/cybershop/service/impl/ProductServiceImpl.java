@@ -6,28 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cybershop.model.Client;
+import br.com.cybershop.model.Product;
 import br.com.cybershop.repository.ClientRepository;
+import br.com.cybershop.repository.ProductRepository;
 import br.com.cybershop.service.ClientService;
+import br.com.cybershop.service.ProductService;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ClientRepository repository;
+	private ProductRepository repository;
 	
 	@Override
-	public List<Client> getAll() {
+	public List<Product> getAll() {
 		return repository.findAll();
 	}
 
 	@Override
-	public void save(Client client) {
-		repository.save(client);
+	public void save(Product product) {
+		// TODO Auto-generated method stub
+		repository.save(product);
 	}
-
-	@Override
-	public void delete(Client client) {
-			repository.delete(client);
-	}
-
 }

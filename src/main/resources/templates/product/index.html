@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout ::htmlhead"></head>
+	<body>
+		<div class="container">
+		<nav th:replace="layout :: menu"(menu)></nav>
+		<a href="form.html" th:href="@{/product/new}"
+		class="btn btn-primary btn-lg" role="button">Novo</a>
+		<table class="table">
+			<thead class="thead-light"> 
+				<tr>
+					<th scope="col">Nome</th>
+					<th scope="col">Preço unitário</th>
+					<th scope="col">Marca</th>
+					<th scope="col">Descrição</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr scope="row" th:each="oneproduct : ${products}">
+					<td th:text="${oneproduct.name}"></td>
+					<td th:text="${oneproduct.unitPrice}"></td>
+					<td th:text="${oneproduct.brand}"></td>
+					<td th:text="${oneproduct.description}"></td>
+					<td> <a th:href="@{'/product/edit/' + ${oneproduct.clientId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>

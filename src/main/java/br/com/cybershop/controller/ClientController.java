@@ -44,5 +44,11 @@ public class ClientController {
 	public ModelAndView edit(@PathVariable("id") Client client) {
 		return new ModelAndView("client/form","client",client);
 	}
+	
+	@GetMapping(value="/delete/{id}")
+	public ModelAndView delete(@PathVariable("id") Client client) {
+		 clientService.delete(client);
+		return new ModelAndView("client/form","client",client);
+	}
 
 }

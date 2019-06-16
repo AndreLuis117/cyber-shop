@@ -18,14 +18,26 @@
 				        id="txtendereco" placeholder="Digite endereço">
 				    </div> 
 				    <div class="form-group">
-				        <label for="txtdataNascimento">Data Nascimento</label>
-				        <input type="text" th:field="*{birthDate}" class="form-control" 
-				        		id="txtdataNascimento" placeholder="Data">
-				    </div> 
+                        <label for="txtDate">Data Nascimento</label>
+                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" 
+                                th:field="*{birthDate}"/>
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div> 
 				    <button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
 			</div>
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
+		   <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+            });
+        </script>
 	</body>
 </html>

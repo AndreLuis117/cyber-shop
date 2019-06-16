@@ -10,14 +10,14 @@
 			<thead class="thead-light"> 
 				<tr>
 					<th scope="col">Nome</th>
-					<th scope="col">Data de nascimento</th>
+					<th scope="col">Data Nascimento</th>
 					<th scope="col"></th>		
 				</tr>
 			</thead>
 			<tbody>
 				<tr scope="row" th:each="umclient : ${clients}">
 					<td th:text="${umclient.name}"></td>
-					<td th:text="${umclient.birthDate}"></td>
+					<td th:text="${#dates.format(umpac.dataNascimento, 'dd/MM/yyyy HH:mm')}"></td>
 					<td> <a th:href="@{'/client/edit/' + ${umclient.clientId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
 					<td><button class='btn btn-danger btn-lg js-delete' th:data-customer-id="${umclient.clientId}">Excluir</button></td>
 					

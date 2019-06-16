@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Client {
 	@Id
@@ -25,6 +27,7 @@ public class Client {
 	private Boolean genre;
 	
 	@Temporal(value=TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date birthDate;
 	private int cep;
 	private String adress;

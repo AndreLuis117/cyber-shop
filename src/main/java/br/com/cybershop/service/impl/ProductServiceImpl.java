@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cybershop.model.Client;
 import br.com.cybershop.model.Product;
-import br.com.cybershop.repository.ClientRepository;
 import br.com.cybershop.repository.ProductRepository;
-import br.com.cybershop.service.ClientService;
 import br.com.cybershop.service.ProductService;
 
 @Service

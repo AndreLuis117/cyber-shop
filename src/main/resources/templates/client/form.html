@@ -8,25 +8,78 @@
 				<form th:action="@{/client/(form)}" th:object="${client}" action="#" method="post">
 					<input type="hidden" id="txtid" th:field="*{clientId}" />
 				    <div class="form-group">
-				        <label for="txtnome">Nome</label>
+				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtnome" placeholder="Nome">
+				        id="txtname" placeholder="Nome">
 				    </div>
 				    <div class="form-group">
-				        <label for="txtendereco">Endereço</label>
-				        <input type="text" th:field="*{adress}" class="form-control" 
-				        id="txtendereco" placeholder="Digite endereço">
+				        <label for="txtlastname">Sobrenome</label>
+				        <input type="text" th:field="*{lastname}" class="form-control" 
+				        id="txtlastname" placeholder="Digite o sobrenome">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtcpf">CPF</label>
+				        <input type="text" th:field="*{cpf}" class="form-control" 
+				        id="txtcpf" placeholder="Digite o CPF">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtemail">E-mail</label>
+				        <input type="text" th:field="*{email}" class="form-control" 
+				        id="txtemail" placeholder="Digite o e-mail">
 				    </div> 
+				    <div class="form-group">
+				        <label for="phonenumber">Número de telefone</label>
+				        <input type="text" th:field="*{phoneNumber}" class="form-control" 
+				        id="phonenumber" placeholder="Digite o número de telefone">
+				    </div> 
+				    <div class="form-group">
+				        <label for="password">Senha</label>
+				        <input type="text" th:field="*{password}" class="form-control" 
+				        id="password" placeholder="Digite a senha">
+				    </div> 
+				    <div class="form-group">
+                        <label for="slcgenre">Sexo</label>
+                        <select class="form-control" id="slcgenre" th:field="*{genre}">
+                            <option th:value="M">Masculino</option>
+                            <option th:value="F">Feminino</option>
+                            <option th:value="O">Outro</option>
+                        </select>
+                    </div>
 				    <div class="form-group">
                         <label for="txtDate">Data Nascimento</label>
                         <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" 
+                            <input id = "birthDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" 
                                 th:field="*{birthDate}"/>
                             <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="form-group">
+				        <label for="txtcep">CEP</label>
+				        <input type="text" th:field="*{cep}" class="form-control" 
+				        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392">
+				    </div>
+                    <div class="form-group">
+				        <label for="txtstate">Estado</label>
+				        <input type="text" th:field="*{state}" class="form-control" 
+				        id="txtstate" placeholder="Digite o estado">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtcity">Cidade</label>
+				        <input type="text" th:field="*{city}" class="form-control" 
+				        id="txtcity" placeholder="Digite a cidade">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtneighborhood">Bairro</label>
+				        <input type="text" th:field="*{neighborhood}" class="form-control" 
+				        id="txtneighborhood" placeholder="Digite a cidade">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtstreet">Rua</label>
+				        <input type="text" th:field="*{city}" class="form-control" 
+				        id="txtstreet" placeholder="Digite a cidade">
+				    </div>
 				    <button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
 			</div>
@@ -37,7 +90,9 @@
                 $('#datetimepicker1').datetimepicker({
                     format:"DD/MM/YYYY"                   
                 });
+                
             });
+            
         </script>
 	</body>
 </html>

@@ -24,15 +24,42 @@ public class Client {
 	private String email;
 	private String phoneNumber;
 	private String password;
-	private Boolean genre;
+	private String genre;
 	
 	@Temporal(value=TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date birthDate;
 	private int cep;
-	private String adress;
+	private String city;
+	private String street;
+	private String state;
+	private String neighborhood;
 	
 	
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public long getClientId() {
 		return clientId;
 	}
@@ -75,10 +102,10 @@ public class Client {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Boolean getGenre() {
+	public String getGenre() {
 		return genre;
 	}
-	public void setGenre(Boolean genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 	public Date getBirthDate() {
@@ -93,12 +120,7 @@ public class Client {
 	public void setCep(int cep) {
 		this.cep = cep;
 	}
-	public String getAdress() {
-		return adress;
-	}
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
+	
 	
 
 }

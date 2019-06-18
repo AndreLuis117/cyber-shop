@@ -17,7 +17,7 @@ import br.com.cybershop.model.ProductCategory;
 import br.com.cybershop.service.ProductCategoryService;
 
 @Controller
-@RequestMapping("/productcategory")
+@RequestMapping("/productCategory")
 public class ProductCategoryController {
 	
 	@Autowired

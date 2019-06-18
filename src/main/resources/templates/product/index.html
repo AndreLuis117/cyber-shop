@@ -22,7 +22,7 @@
 					<td th:text="${oneproduct.unitPrice}"></td>
 					<td th:text="${oneproduct.brand}"></td>
 					<td th:text="${oneproduct.description}"></td>
-					<td> <a th:href="@{'/product/edit/' + ${oneproduct.clientId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
+					<td> <a th:href="@{'/product/edit/' + ${oneproduct.productId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
 				</tr>
 			</tbody>
 		</table>

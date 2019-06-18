@@ -6,20 +6,19 @@
 		<nav th:replace="layout :: menu"(menu)></nav>
 		<a href="form.html" th:href="@{/productCategory/new}"
 		class="btn btn-primary btn-lg" role="button">Novo</a>
-		<table class="table">
+		<table class="table" id="productCategories" >
 			<thead class="thead-light"> 
 				<tr>
-					<th scope="col">Nome</th>				
+					<th scope="col">Categoria de produtos</th>				
 				</tr>
 			</thead>
 			<tbody>
-				<tr scope="row" th:each="oneproduct : ${productCategories}">
+				<tr scope="row" th:each="oneproductCategory : ${productCategory}">
 					<td th:text="${oneproductCategory.name}"></td>
-					<td> <a th:href="@{'/productCategory/edit/' + ${oneproduct.categoryId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
+					<td> <a th:href="@{'/productCategory/edit/' + ${oneproductCategory.categoryId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 	</body>

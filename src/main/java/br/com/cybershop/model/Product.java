@@ -20,7 +20,7 @@ public class Product {
 	private String description;
 	private String brand;
 	
-	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=false)
+	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
 	private ProductCategory prodCat;
 	
 	

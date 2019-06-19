@@ -23,7 +23,6 @@ public class Product {
 	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
 	private ProductCategory prodCat;
 	
-	
 	public long getProductId() {
 		return productId;
 	}

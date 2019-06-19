@@ -1,5 +1,6 @@
 package br.com.cybershop.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import br.com.cybershop.model.Product;
+import br.com.cybershop.model.ProductCategory;
+import br.com.cybershop.repository.ProductCategoryRepository;
 import br.com.cybershop.service.ProductService;
 
 @Controller
@@ -25,6 +27,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
+	
 	@GetMapping()
 	public ModelAndView index() {
 		List<Product> list = productService.getAll();
@@ -33,7 +38,8 @@ public class ProductController {
 		 
 	@GetMapping("/new")
 	public ModelAndView createForm(@ModelAttribute Product product) {
-		return new ModelAndView("product/form");
+		List<ProductCategory> listCategory = productCategoryRepository.findAll();
+		return new ModelAndView("product/form", "listCategory", listCategory);
 	}
 	@PostMapping(params="form")
 	public ModelAndView save(@Valid Product product) 
@@ -44,6 +50,10 @@ public class ProductController {
 	
 	@GetMapping(value="/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Product product) {
+		List<ProductCategory> listCategory = productCategoryRepository.findAll();
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("product", product);
+		dados.put("listCategory", listCategory);
 		return new ModelAndView("product/form","product",product);
 	}
 }

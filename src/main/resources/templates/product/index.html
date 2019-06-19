@@ -13,6 +13,7 @@
 					<th scope="col">Preço unitário</th>
 					<th scope="col">Marca</th>
 					<th scope="col">Descrição</th>
+					<th scope="col">Categoria</th>
 					
 				</tr>
 			</thead>
@@ -22,6 +23,7 @@
 					<td th:text="${oneproduct.unitPrice}"></td>
 					<td th:text="${oneproduct.brand}"></td>
 					<td th:text="${oneproduct.description}"></td>
+					<td th:text="${oneproduct.prodCat.name}"></td>
 					<td> <a th:href="@{'/product/edit/' + ${oneproduct.productId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
 				</tr>
 			</tbody>

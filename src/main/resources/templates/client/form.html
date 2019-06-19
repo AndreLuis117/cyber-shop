@@ -7,10 +7,13 @@
  			<div class="border border-dark">
 				<form th:action="@{/client/(form)}" th:object="${client}" action="#" method="post">
 					<input type="hidden" id="txtid" th:field="*{clientId}" />
+				    <div>
+                    	<h3>Informações pessoais do cliente</h3>
+                    </div>
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Nome">
+				        id="txtname" placeholder="Digite o nome">
 				    </div>
 				    <div class="form-group">
 				        <label for="txtlastname">Sobrenome</label>
@@ -28,14 +31,14 @@
 				        id="txtemail" placeholder="Digite o e-mail">
 				    </div> 
 				    <div class="form-group">
-				        <label for="phonenumber">Número de telefone</label>
+				        <label for="txtphonenumber">Número de telefone</label>
 				        <input type="text" th:field="*{phoneNumber}" class="form-control" 
-				        id="phonenumber" placeholder="Digite o número de telefone">
+				        id="txtphonenumber" placeholder="Digite o número de telefone">
 				    </div> 
 				    <div class="form-group">
-				        <label for="password">Senha</label>
-				        <input type="text" th:field="*{password}" class="form-control" 
-				        id="password" placeholder="Digite a senha">
+				        <label for="txtpassword">Senha</label>
+				        <input type="password" th:field="*{password}" class="form-control" 
+				        id="txtpassword" placeholder="Digite a senha">
 				    </div> 
 				    <div class="form-group">
                         <label for="slcgenre">Sexo</label>
@@ -55,30 +58,45 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div>
+                    <h3>Informações de endereço do cliente</h3>
+                    </div>
+                    
                     <div class="form-group">
 				        <label for="txtcep">CEP</label>
-				        <input type="text" th:field="*{cep}" class="form-control" 
+				        <input type="text" th:field="*{adressCep}" class="form-control" 
 				        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392">
 				    </div>
                     <div class="form-group">
 				        <label for="txtstate">Estado</label>
-				        <input type="text" th:field="*{state}" class="form-control" 
+				        <input type="text" th:field="*{adress_State}" class="form-control" 
 				        id="txtstate" placeholder="Digite o estado">
 				    </div>
 				    <div class="form-group">
 				        <label for="txtcity">Cidade</label>
-				        <input type="text" th:field="*{city}" class="form-control" 
+				        <input type="text" th:field="*{adressCity}" class="form-control" 
 				        id="txtcity" placeholder="Digite a cidade">
 				    </div>
 				    <div class="form-group">
 				        <label for="txtneighborhood">Bairro</label>
-				        <input type="text" th:field="*{neighborhood}" class="form-control" 
+				        <input type="text" th:field="*{adressNeighborhood}" class="form-control" 
 				        id="txtneighborhood" placeholder="Digite a cidade">
 				    </div>
 				    <div class="form-group">
 				        <label for="txtstreet">Rua</label>
-				        <input type="text" th:field="*{city}" class="form-control" 
+				        <input type="text" th:field="*{adress_Street}" class="form-control" 
 				        id="txtstreet" placeholder="Digite a cidade">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtnumber">Número</label>
+				        <input type="text" th:field="*{adressNumber}" class="form-control" 
+				        id="txtnumber" placeholder="Digite o número da residência">
+				    </div>
+				    <div class="form-group">
+				        <label for="txtcomplement">Complemento</label>
+				        <input type="text" th:field="*{adressComplement}" class="form-control" 
+				        id="txtcomplement" placeholder="Digite o complemento do endereço">
 				    </div>
 				    <button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
@@ -91,6 +109,68 @@
                     format:"DD/MM/YYYY"                   
                 });
                 
+            });
+            
+            $(document).ready(function() {
+
+                function limpa_formulário_cep() {
+                    // Limpa valores do formulário de cep.
+                    $("#txtstreet").val("");
+                    $("#txtneighborhood").val("");
+                    $("#txtcity").val("");
+                    $("#txtstate").val("");
+                }
+                
+                //Quando o campo cep perde o foco.
+                $("#txtcep").blur(function() {
+
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = $(this).val().replace(/\D/g, '');
+
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
+
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
+
+                        //Valida o formato do CEP.
+                        if(validacep.test(cep)) {
+
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            $("#txtstreet").val("...");
+                            $("#txtneighborhood").val("...");
+                            $("#txtcity").val("...");
+                            $("#txtstate").val("...");
+                         
+
+                            //Consulta o webservice viacep.com.br/
+                            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#txtstreet").val(dados.logradouro);
+                                    $("#txtneighborhood").val(dados.bairro);
+                                    $("#txtcity").val(dados.localidade);
+                                    $("#txtstate").val(dados.uf);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+                            alert("Formato de CEP inválido.");
+                        }
+                    } //end if.
+                    else {
+                        //cep sem valor, limpa formulário.
+                        limpa_formulário_cep();
+                    }
+                });
             });
             
         </script>

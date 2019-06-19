@@ -25,40 +25,60 @@ public class Client {
 	private String phoneNumber;
 	private String password;
 	private String genre;
-	
 	@Temporal(value=TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date birthDate;
-	private int cep;
-	private String city;
-	private String street;
-	private String state;
-	private String neighborhood;
+	private int adressCep;
+	private String adressCity;
+	private String adress_Street;
+	private String adress_State;
+	private String adressNeighborhood;
+	private String adressNumber;
+	private String adressComplement;
+	
+	public String getAdressNumber() {
+		return adressNumber;
+	}
+	public void setAdressNumber(String adressNumber) {
+		this.adressNumber = adressNumber;
+	}
+	public String getAdressComplement() {
+		return adressComplement;
+	}
+	public void setAdressComplement(String adressComplement) {
+		this.adressComplement = adressComplement;
+	}
 	
 	
-	public String getNeighborhood() {
-		return neighborhood;
+	public int getAdressCep() {
+		return adressCep;
 	}
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
+	public void setAdressCep(int adressCep) {
+		this.adressCep = adressCep;
 	}
-	public String getCity() {
-		return city;
+	public String getAdressCity() {
+		return adressCity;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setAdressCity(String adressCity) {
+		this.adressCity = adressCity;
 	}
-	public String getStreet() {
-		return street;
+	public String getAdress_Street() {
+		return adress_Street;
 	}
-	public void setStreet(String street) {
-		this.street = street;
+	public void setAdress_Street(String adress_Street) {
+		this.adress_Street = adress_Street;
 	}
-	public String getState() {
-		return state;
+	public String getAdress_State() {
+		return adress_State;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setAdress_State(String adress_State) {
+		this.adress_State = adress_State;
+	}
+	public String getAdressNeighborhood() {
+		return adressNeighborhood;
+	}
+	public void setAdressNeighborhood(String adressNeighborhood) {
+		this.adressNeighborhood = adressNeighborhood;
 	}
 	public long getClientId() {
 		return clientId;
@@ -114,12 +134,7 @@ public class Client {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	public int getCep() {
-		return cep;
-	}
-	public void setCep(int cep) {
-		this.cep = cep;
-	}
+	
 	
 	
 

@@ -13,36 +13,36 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Digite o nome">
+				        id="txtname" placeholder="Digite o nome" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtlastname">Sobrenome</label>
 				        <input type="text" th:field="*{lastname}" class="form-control" 
-				        id="txtlastname" placeholder="Digite o sobrenome">
+				        id="txtlastname" placeholder="Digite o sobrenome" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtcpf">CPF</label>
 				        <input type="text" th:field="*{cpf}" class="form-control" 
-				        id="txtcpf" placeholder="Digite o CPF">
+				        id="txtcpf" placeholder="Digite o CPF" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtemail">E-mail</label>
 				        <input type="text" th:field="*{email}" class="form-control" 
-				        id="txtemail" placeholder="Digite o e-mail">
+				        id="txtemail" placeholder="Digite o e-mail" required>
 				    </div> 
 				    <div class="form-group">
 				        <label for="txtphonenumber">Número de telefone</label>
 				        <input type="text" th:field="*{phoneNumber}" class="form-control" 
-				        id="txtphonenumber" placeholder="Digite o número de telefone">
+				        id="txtphonenumber" placeholder="Digite o número de telefone" required>
 				    </div> 
 				    <div class="form-group">
 				        <label for="txtpassword">Senha</label>
 				        <input type="password" th:field="*{password}" class="form-control" 
-				        id="txtpassword" placeholder="Digite a senha">
+				        id="txtpassword" placeholder="Digite a senha" required>
 				    </div> 
 				    <div class="form-group">
                         <label for="slcgenre">Sexo</label>
-                        <select class="form-control" id="slcgenre" th:field="*{genre}">
+                        <select class="form-control" id="slcgenre" th:field="*{genre}" required>
                             <option th:value="M">Masculino</option>
                             <option th:value="F">Feminino</option>
                             <option th:value="O">Outro</option>
@@ -52,11 +52,18 @@
                         <label for="txtDate">Data Nascimento</label>
                         <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                             <input id = "birthDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" 
-                                th:field="*{birthDate}"/>
+                                th:field="*{birthDate}" required/>
                             <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="slcgenre">Status do cliente</label>
+                        <select class="form-control" id="slcStatus" th:field="*{status}" required>
+                            <option th:value="true">Ativo</option>
+                            <option th:value="false">Inativo</option>
+                        </select>
                     </div>
                     
                     <div>
@@ -66,37 +73,37 @@
                     <div class="form-group">
 				        <label for="txtcep">CEP</label>
 				        <input type="text" th:field="*{adressCep}" class="form-control" 
-				        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392">
+				        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392" required>
 				    </div>
                     <div class="form-group">
 				        <label for="txtstate">Estado</label>
 				        <input type="text" th:field="*{adress_State}" class="form-control" 
-				        id="txtstate" placeholder="Digite o estado">
+				        id="txtstate" placeholder="Digite o estado" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtcity">Cidade</label>
 				        <input type="text" th:field="*{adressCity}" class="form-control" 
-				        id="txtcity" placeholder="Digite a cidade">
+				        id="txtcity" placeholder="Digite a cidade" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtneighborhood">Bairro</label>
 				        <input type="text" th:field="*{adressNeighborhood}" class="form-control" 
-				        id="txtneighborhood" placeholder="Digite a cidade">
+				        id="txtneighborhood" placeholder="Digite a cidade" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtstreet">Rua</label>
 				        <input type="text" th:field="*{adress_Street}" class="form-control" 
-				        id="txtstreet" placeholder="Digite a cidade">
+				        id="txtstreet" placeholder="Digite a cidade" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtnumber">Número</label>
 				        <input type="text" th:field="*{adressNumber}" class="form-control" 
-				        id="txtnumber" placeholder="Digite o número da residência">
+				        id="txtnumber" placeholder="Digite o número da residência" required>
 				    </div>
 				    <div class="form-group">
 				        <label for="txtcomplement">Complemento</label>
 				        <input type="text" th:field="*{adressComplement}" class="form-control" 
-				        id="txtcomplement" placeholder="Digite o complemento do endereço">
+				        id="txtcomplement" placeholder="Digite o complemento do endereço" required>
 				    </div>
 				    <button type="submit" class="btn btn-primary">Enviar</button>
 				</form>

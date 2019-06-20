@@ -9,19 +9,22 @@
 		<table class="table" id="clients">
 			<thead class="thead-light"> 
 				<tr>
+					<th scope="col">ID</th>
 					<th scope="col">Nome</th>
+					<th scope="col">Sobrenome</th>
 					<th scope="col">Data Nascimento</th>
-					<th scope="col">E-mail</th>
-					
+					<th scope="col"></th>
 					<th scope="col"></th>		
 				</tr>
 			</thead>
 			<tbody>
-				<tr scope="row" th:each="umclient : ${clients}">
-					<td th:text="${umclient.name}"></td>
-					<td th:text="${#dates.format(umclient.birthDate, 'dd/MM/yyyy')}"></td>
-					<td> <a th:href="@{'/client/edit/' + ${umclient.clientId}}" class= "btn btn-primary btn-lg">Alterar</a></td>
-					<td><button class='btn btn-danger btn-lg js-delete' th:data-customer-id="${umclient.clientId}">Excluir</button></td>
+				<tr scope="row" th:each="oneclient : ${clients}">
+					<td th:text="${oneclient.clientId}"></td>
+					<td th:text="${oneclient.name}"></td>
+					<td th:text="${oneclient.lastname}"></td>
+					<td th:text="${#dates.format(oneclient.birthDate, 'dd/MM/yyyy')}"></td>
+					<td> <a th:href="@{'/client/edit/' + ${oneclient.clientId}}" class= "btn btn-primary btn-lg"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><button class='btn btn-danger btn-lg js-delete' th:data-customer-id="${oneclient.clientId}"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
 					
 				</tr>
 			</tbody>

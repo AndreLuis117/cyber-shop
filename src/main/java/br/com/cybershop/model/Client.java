@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,21 +19,37 @@ public class Client {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long clientId;
 	@Column(length=800)
+	@NotNull
 	private String name;
+	@NotNull
 	private String lastname;
+	@NotNull
 	private long cpf;
+	@NotNull
 	private String email;
+	@NotNull
 	private String phoneNumber;
+	@NotNull
 	private String password;
+	@NotNull
 	private String genre;
+	@NotNull
 	@Temporal(value=TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date birthDate;
+	@NotNull
+	private boolean status;
+	@NotNull
 	private int adressCep;
+	@NotNull
 	private String adressCity;
+	@NotNull
 	private String adress_Street;
+	@NotNull
 	private String adress_State;
+	@NotNull
 	private String adressNeighborhood;
+	@NotNull
 	private String adressNumber;
 	private String adressComplement;
 	
@@ -135,7 +152,12 @@ public class Client {
 		this.birthDate = birthDate;
 	}
 	
-	
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	
 
 }

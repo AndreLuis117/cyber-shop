@@ -24,7 +24,7 @@ public class Client {
 	@NotNull
 	private String lastname;
 	@NotNull
-	private long cpf;
+	private String cpf;
 	@NotNull
 	private String email;
 	@NotNull
@@ -40,7 +40,7 @@ public class Client {
 	@NotNull
 	private boolean status;
 	@NotNull
-	private int adressCep;
+	private String adressCep;
 	@NotNull
 	private String adressCity;
 	@NotNull
@@ -67,10 +67,10 @@ public class Client {
 	}
 	
 	
-	public int getAdressCep() {
+	public String getAdressCep() {
 		return adressCep;
 	}
-	public void setAdressCep(int adressCep) {
+	public void setAdressCep(String adressCep) {
 		this.adressCep = adressCep;
 	}
 	public String getAdressCity() {
@@ -115,10 +115,10 @@ public class Client {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {

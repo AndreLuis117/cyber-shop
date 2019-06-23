@@ -13,7 +13,8 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Digite o nome" required>
+				        id="txtname" placeholder="Digite o nome" pattern="[A-za-z]+$" required oninvalid="setCustomValidity('Por favor, preencha o nome')" 
+				        onchange="try{setCustomValidity('')}catch(e){}">
 				    </div>
 				    <div class="form-group">
 				        <label for="txtlastname">Sobrenome</label>
@@ -112,6 +113,10 @@
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 		   <script type="text/javascript">
             $(function () {
+            	//Adiciona mascara para os campos
+            	$("#txtcpf").mask("999.999.999-99");
+            	$("#txtcep").mask("99999-999");
+            	$("#txtphonenumber").mask("(99) 99999-9999");
                 $('#datetimepicker1').datetimepicker({
                     format:"DD/MM/YYYY"                   
                 });

@@ -26,7 +26,7 @@ public class ClientAutoController {
 	@GetMapping()
 	public ModelAndView index() {
 		List<Client> list = clientService.getAll();
-		 return new ModelAndView("client/index", "clients", list);
+		 return new ModelAndView("client-auto/index", "clients", list);
 	}
 		 
 	@GetMapping("/new")
@@ -38,18 +38,18 @@ public class ClientAutoController {
 	{
 		client.setStatus(true);
 		clientService.save(client);
-		return new ModelAndView("redirect:/client");
+		return new ModelAndView("redirect:/client-auto");
 	}
 	
 	@GetMapping(value="/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Client client) {
-		return new ModelAndView("client/form","client",client);
+		return new ModelAndView("client-auto/form","client",client);
 	}
 	
 	@GetMapping(value="/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Client client) {
 		 clientService.delete(client);
-		return new ModelAndView("client/form","client",client);
+		return new ModelAndView("client-auto/form","client",client);
 	}
 
 }

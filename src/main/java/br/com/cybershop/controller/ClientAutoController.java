@@ -17,8 +17,8 @@ import br.com.cybershop.model.Client;
 import br.com.cybershop.service.ClientService;
 
 @Controller
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/client-auto")
+public class ClientAutoController {
 	
 	@Autowired
 	private ClientService clientService;
@@ -31,25 +31,19 @@ public class ClientController {
 		 
 	@GetMapping("/new")
 	public ModelAndView createForm(@ModelAttribute Client client) {
-		return new ModelAndView("client/form");
+		return new ModelAndView("client-auto/form");
 	}
 	@PostMapping(params="form")
 	public ModelAndView save(@Valid Client client) 
 	{
+		client.setStatus(true);
 		clientService.save(client);
 		return new ModelAndView("redirect:/client");
 	}
 	
-	@PostMapping(params="details-edit")
-	public ModelAndView save2(@Valid Client client) 
-	{
-		clientService.save(client);
-		return new ModelAndView("redirect:/client");
-	}
-	
-	@GetMapping(value="/details-edit/{id}")
+	@GetMapping(value="/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Client client) {
-		return new ModelAndView("client/details-edit","client",client);
+		return new ModelAndView("client/form","client",client);
 	}
 	
 	@GetMapping(value="/delete/{id}")

@@ -4,55 +4,56 @@
 	<body>
 	<nav th:replace="layout :: menu">(menu)</nav>
 		<div class="container mt-3">
-			<div class="card">
-			  <div class="card-body"> <div></div>
-			    <h3 class="card-title">Cadastro de clientes</h3>
+			
 			
 	 			<div>
-					<form th:action="@{/client/(form)}" th:object="${client}" action="#" method="post">
+					<form th:action="@{/client/(details-edit)}" th:object="${client}" action="#" method="post">
+					<div class="card">
+			  			<div class="card-body"> <div></div>
+			    			<h3 id="headerMsg" class="card-title">Detalhes do cliente</h3>
 						<input type="hidden" id="txtid" th:field="*{clientId}" />
 					    <div>
-	                    	<h5>Informações pessoais do cliente</h5>
+	                    	<h5>Informações do cliente</h5>
 	                    </div>
 					    <div class="form-group">
 					        <label for="txtname">Nome</label>
 					        <input type="text" th:field="*{name}" class="form-control" 
 					        id="txtname" placeholder="Digite o nome" pattern="[A-za-z]+$" required oninvalid="setCustomValidity('Por favor, preencha o nome')" 
-					        onchange="try{setCustomValidity('')}catch(e){}">
+					        onchange="try{setCustomValidity('')}catch(e){}" disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtlastname">Sobrenome</label>
 					        <input type="text" th:field="*{lastname}" class="form-control" 
-					        id="txtlastname" placeholder="Digite o sobrenome" required>
+					        id="txtlastname" placeholder="Digite o sobrenome" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtcpf">CPF</label>
 					        <input type="text" th:field="*{cpf}" class="form-control" 
-					        id="txtcpf" placeholder="Digite o CPF" required>
+					        id="txtcpf" placeholder="Digite o CPF" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtemail">E-mail</label>
 					        <input type="text" th:field="*{email}" class="form-control" 
-					        id="txtemail" placeholder="Digite o e-mail" required>
+					        id="txtemail" placeholder="Digite o e-mail" required disabled>
 					    </div> 
 					    <div class="form-group">
 					        <label for="txtphonenumber">Número de telefone</label>
 					        <input type="text" th:field="*{phoneNumber}" class="form-control" 
-					        id="txtphonenumber" placeholder="Digite o número de telefone" required>
+					        id="txtphonenumber" placeholder="Digite o número de telefone" required disabled>
 					    </div> 
 					    <div class="form-group">
 					        <label for="txtpassword">Senha</label>
 					        <input type="password" th:field="*{password}" class="form-control" 
-					        id="txtpassword" placeholder="Digite a senha" required>
+					        id="txtpassword" placeholder="Digite a senha" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtpasswordconfirm">Confirmar senha</label>
 					        <input type="password" class="form-control" 
-					        id="txtpasswordconfirm" placeholder="Digite a senha novamente" required>
+					        id="txtpasswordconfirm" placeholder="Digite a senha novamente" required disabled>
 					    </div>
 					    <div class="form-group">
 	                        <label for="slcgenre">Sexo</label>
-	                        <select class="form-control" id="slcgenre" th:field="*{genre}" required>
+	                        <select class="form-control" id="slcgenre" th:field="*{genre}" required disabled>
 	                            <option th:value="M">Masculino</option>
 	                            <option th:value="F">Feminino</option>
 	                            <option th:value="O">Outro</option>
@@ -62,7 +63,7 @@
 	                        <label for="txtDate">Data Nascimento</label>
 	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 	                            <input id = "birthDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
-	                                th:field="*{birthDate}" required/>
+	                                th:field="*{birthDate}" required disabled/>
 	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>
@@ -70,58 +71,100 @@
 	                    </div>
 	                    <div class="form-group">
 	                        <label for="slcgenre">Status do cliente</label>
-	                        <select class="form-control" id="slcStatus" th:field="*{status}" required>
+	                        <select class="form-control" id="slcStatus" th:field="*{status}" required disabled>
 	                            <option th:value="true">Ativo</option>
 	                            <option th:value="false">Inativo</option>
 	                        </select>
 	                    </div>
+	        	</div>
+			</div>
+	                    <br/>
+	                    <div class="card">
+			  			<div class="card-body">
+			    			<h5 id="headerMsg" class="card-title">Informações de endereço do cliente</h5>
 	                    
-	                    <div>
-	                    <h3>Informações de endereço do cliente</h3>
-	                    </div>
 	                    
 	                    <div class="form-group">
 					        <label for="txtcep">CEP</label>
 					        <input type="text" th:field="*{adressCep}" class="form-control" 
-					        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392" required>
+					        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392" required disabled>
 					    </div>
 	                    <div class="form-group">
 					        <label for="txtstate">Estado</label>
 					        <input type="text" th:field="*{adress_State}" class="form-control" 
-					        id="txtstate" placeholder="Digite o estado" required>
+					        id="txtstate" placeholder="Digite o estado" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtcity">Cidade</label>
 					        <input type="text" th:field="*{adressCity}" class="form-control" 
-					        id="txtcity" placeholder="Digite a cidade" required>
+					        id="txtcity" placeholder="Digite a cidade" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtneighborhood">Bairro</label>
 					        <input type="text" th:field="*{adressNeighborhood}" class="form-control" 
-					        id="txtneighborhood" placeholder="Digite a cidade" required>
+					        id="txtneighborhood" placeholder="Digite a cidade" required disabled>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtstreet">Rua</label>
 					        <input type="text" th:field="*{adress_Street}" class="form-control" 
-					        id="txtstreet" placeholder="Digite a cidade" required>
+					        id="txtstreet" placeholder="Digite a cidade" required disabled>
 					    </div>
 					    <div class="form-group">
-					        <label for="txtnumber">Número</label>
+					        <label for="txtnumber">Número da residência</label>
 					        <input type="text" th:field="*{adressNumber}" class="form-control" 
-					        id="txtnumber" placeholder="Digite o número da residência" required>
+					        id="txtnumber" placeholder="Digite o número da residência" required disabled>
 					    </div>
-					    <div	 class="form-group">
+					    <div class="form-group">
 					        <label for="txtcomplement">Complemento</label>
 					        <input type="text" th:field="*{adressComplement}" class="form-control" 
-					        id="txtcomplement" placeholder="Digite o complemento do endereço" required>
+					        id="txtcomplement" placeholder="Digite o complemento do endereço" required disabled>
 					    </div>
-					    <button type="submit" class="btn btn-primary">Enviar</button>
+					    
+					    <div class="form-row">
+					    
+					    	
+					    	<a id="editButton" class= "btn btn-primary btn-lg" style="margin-right: 15px"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					    	<a id="send" class= "btn btn-primary btn-lg" style="display:none"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					    	
+					    	
+					 
+					    </div>
+					    
+					    </div>
+	                    </div>
 					</form>
-				</div>
-			</div>
+				
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 		   <script type="text/javascript">
-            $(function () {
+            
+		   $(function(){
+				 
+				 $("#editButton").click(function() {
+				 document.getElementById("txtname").disabled = false;
+				 document.getElementById("txtlastname").disabled = false;
+				 document.getElementById("txtcpf").disabled = false;
+				 document.getElementById("txtemail").disabled = false;
+				 document.getElementById("txtphonenumber").disabled = false;
+				 document.getElementById("txtpassword").disabled = false;
+				 document.getElementById("txtpasswordconfirm").disabled = false; 
+				 document.getElementById("slcgenre").disabled = false;
+				 document.getElementById("birthDate").disabled = false;  
+				 document.getElementById("slcStatus").disabled = false; 
+				 document.getElementById("txtcep").disabled = false; 
+				 document.getElementById("txtstate").disabled = false; 
+				 document.getElementById("txtcity").disabled = false; 
+				 document.getElementById("txtneighborhood").disabled = false; 
+				 document.getElementById("txtstreet").disabled = false; 
+				 document.getElementById("txtnumber").disabled = false; 
+				 document.getElementById("txtcomplement").disabled = false; 
+				 document.getElementById("send").style.display = "block";
+				 $('#headerMsg').text('Editar cliente');
+	 
+				 });
+			 })
+		   
+		   
+		   $(function () {
             	//Adiciona mascara para os campos
             	$("#txtcpf").mask("999.999.999-99");
             	$("#txtcep").mask("99999-999");

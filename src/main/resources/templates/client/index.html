@@ -6,9 +6,17 @@
 		<div class="container mt-3">
 			<div class="card">
 			  <div class="card-body">
-			    <h5 class="card-title">Clientes</h5>
-					<a href="form.html" th:href="@{/client/new}"
-					class="btn btn-primary btn-lg" role="button">Novo</a>
+			  	<h3 class="card-title">Clientes</h3>
+			  </div>
+			</div>
+			    <br/>
+					<div class="card">
+			  			<div class="card-body">
+					<div>
+						<a href="form.html" th:href="@{/client/new}"
+						class="btn btn-primary btn-lg" role="button">Novo</a>
+					</div>
+					<br/>
 					<table class="table" id="clients">
 						<thead class="thead-light"> 
 							<tr>
@@ -16,8 +24,8 @@
 								<th scope="col">Nome</th>
 								<th scope="col">Sobrenome</th>
 								<th scope="col">Data Nascimento</th>
-								<th scope="col"></th>
-								<th scope="col"></th>		
+								<th scope="col">Detalhes</th>
+								<th scope="col">Deletar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -26,7 +34,7 @@
 								<td th:text="${oneclient.name}"></td>
 								<td th:text="${oneclient.lastname}"></td>
 								<td th:text="${#dates.format(oneclient.birthDate, 'dd/MM/yyyy')}"></td>
-								<td> <a th:href="@{'/client/edit/' + ${oneclient.clientId}}" class= "btn btn-primary btn-lg"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+								<td> <a th:href="@{'/client/details-edit/' + ${oneclient.clientId}}" class= "btn btn-primary btn-lg"><i class="fa fa-list-alt" aria-hidden="true"></i></a></td>
 								<td><button class='btn btn-danger btn-lg js-delete' th:data-customer-id="${oneclient.clientId}"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
 								
 							</tr>

@@ -48,12 +48,24 @@ public class ProductController {
 		return new ModelAndView("redirect:/product");
 	}
 	
-	@GetMapping(value="/edit/{id}")
+	@PostMapping(params="details-edit")
+	public ModelAndView save2(@Valid Product product) 
+	{
+		productService.save(product);
+		return new ModelAndView("redirect:/product");
+	}
+	
+	@GetMapping(value="/details-edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Product product) {
 		List<ProductCategory> listCategory = productCategoryRepository.findAll();
 		HashMap<String, Object> dados = new HashMap<String, Object>();
 		dados.put("product", product);
 		dados.put("listCategory", listCategory);
-		return new ModelAndView("product/form","product",product);
+		return new ModelAndView("product/details-edit",dados);
+	}
+	
+	@GetMapping(value="/details/{id}")
+	public ModelAndView details(@PathVariable("id") Product product) {
+		return new ModelAndView("product/details","product",product);
 	}
 }

@@ -4,13 +4,14 @@
 	<body>
 	<nav th:replace="layout :: menu">(menu)</nav>
 		<div class="container mt-3">
-			<div class="card">
-			  <div class="card-body"> <div></div>
-			    <h3 class="card-title">Cadastro de clientes</h3>
+			
 			
 	 			<div>
 					<form th:action="@{/client/(form)}" th:object="${client}" action="#" method="post">
 						<input type="hidden" id="txtid" th:field="*{clientId}" />
+						<div class="card">
+			  <div class="card-body"> <div></div>
+			    <h3 class="card-title">Cadastro de clientes</h3>
 					    <div>
 	                    	<h5>Informações pessoais do cliente</h5>
 	                    </div>
@@ -75,10 +76,14 @@
 	                            <option th:value="false">Inativo</option>
 	                        </select>
 	                    </div>
-	                    
-	                    <div>
-	                    <h3>Informações de endereço do cliente</h3>
 	                    </div>
+			</div>
+	                    
+	                    
+	                   <br/>
+	                    <div class="card">
+			  			<div class="card-body">
+			    			<h5 id="headerMsg" class="card-title">Informações de endereço do cliente</h5>
 	                    
 	                    <div class="form-group">
 					        <label for="txtcep">CEP</label>
@@ -115,10 +120,11 @@
 					        <input type="text" th:field="*{adressComplement}" class="form-control" 
 					        id="txtcomplement" placeholder="Digite o complemento do endereço" required>
 					    </div>
-					    <button type="submit" class="btn btn-primary">Enviar</button>
+					    <button type="submit" class="btn btn-success">Enviar</button>
+					      </div>
+	                    </div>
 					</form>
-				</div>
-			</div>
+				
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 		   <script type="text/javascript">
             $(function () {

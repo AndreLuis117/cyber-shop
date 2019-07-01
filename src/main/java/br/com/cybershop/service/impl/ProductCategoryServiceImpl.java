@@ -25,5 +25,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		// TODO Auto-generated method stub
 		repository.save(productCategory);
 	}
+	@Override
+	public void delete(ProductCategory productCategory) {
+			repository.delete(productCategory);
+	}
 
 }

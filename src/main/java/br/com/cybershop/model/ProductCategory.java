@@ -12,6 +12,7 @@ public class ProductCategory {
 	private long categoryId;
 	
 	private String name;
+	private boolean status;
 	public long getCategoryId() {
 		return categoryId;
 	}
@@ -23,5 +24,11 @@ public class ProductCategory {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public boolean getStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }

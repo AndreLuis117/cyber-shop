@@ -19,6 +19,7 @@ public class Product {
 	@Column(length=800)
 	private String description;
 	private String brand;
+	private boolean status;
 	
 	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
 	private ProductCategory prodCat;
@@ -59,6 +60,14 @@ public class Product {
 	public void setProdCat(ProductCategory prodCat) {
 		this.prodCat = prodCat;
 	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	
 	
 
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+		<nav th:replace="layout :: menu">(menu)</nav>
+			<div class="container mt-3">
+				<div class="card">
+			  		<div class="card-body">
+			    		<h5 id="headerMsg" class="card-title">Detalhes da categoria de produto</h5>
+				 			<div>
+								<form th:action="@{/productCategory/(details-edit)}" th:object="${productCategory}" action="#" method="post">
+									<input type="hidden" id="txtid" th:field="*{categoryId}" />
+								    <div class="form-group">
+								        <label for="txtname">Nome</label>
+								        <input type="text" th:field="*{name}" class="form-control" 
+								        id="txtname" placeholder="Tipo de categoria" required disabled>
+								    </div>
+								    <div class="form-group">
+								    <label for="slcgenre">Status do categoria</label>
+					                	<select class="form-control" id="slcStatus" th:field="*{status}" required disabled>
+					                         <option th:value="true">Ativo</option>
+					                         <option th:value="false">Inativo</option>
+					                    </select>
+								    </div>
+				                    
+				                    <div class="form-row">
+				                    	<button type="button" id="editButton" class= "btn btn-primary btn-lg" style="margin-right: 15px">
+				                    		<i class="fa fa-pencil" aria-hidden="true"></i>
+				                    	</button>
+					    				
+					    				<button type="submit" class="btn btn-primary btn-lg" id="send" style="display:none">
+					    					<i class="fa fa-floppy-o" aria-hidden="true"></i>
+					    				</button>
+					    				
+				                    </div>
+				                   
+								</form>
+							</div>
+					</div>
+				</div>
+			</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script src="jquery.maskMoney.js" type="text/javascript"></script>
+		 <script>
+		 $(function(){
+			 
+			 $("#editButton").click(function() {
+			 document.getElementById("txtname").disabled = false;
+			 document.getElementById("slcStatus").disabled = false;
+			 document.getElementById("send").style.display = "block";
+			 $('#headerMsg').text('Editar categoria de produto');
+ 
+			 });
+		 })
+		 
+		 $(function(){
+			$("#txtunitprice").maskMoney();
+		})
+		</script>
+	</body>
+</html>

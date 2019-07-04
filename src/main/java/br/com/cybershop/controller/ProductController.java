@@ -64,8 +64,4 @@ public class ProductController {
 		return new ModelAndView("product/details-edit",dados);
 	}
 	
-	@GetMapping(value="/details/{id}")
-	public ModelAndView details(@PathVariable("id") Product product) {
-		return new ModelAndView("product/details","product",product);
-	}
 }

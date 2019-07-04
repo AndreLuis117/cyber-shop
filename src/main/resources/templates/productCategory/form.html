@@ -13,16 +13,16 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Tipo de categoria">
+				        id="txtname" placeholder="Tipo de categoria" required>
 				    </div>
 				    <div class="form-group">
-				    <label for="slcgenre">Status do cliente</label>
+				    <label for="slcgenre">Status do categoria</label>
 	                	<select class="form-control" id="slcStatus" th:field="*{status}" required>
 	                         <option th:value="true">Ativo</option>
 	                         <option th:value="false">Inativo</option>
 	                    </select>
 				    </div>
-				    <button type="submit" class="btn btn-primary">Enviar</button>
+				    <button type="submit" class="btn btn-success">Enviar</button>
 				</form>
 			</div>
 		</div>

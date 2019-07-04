@@ -40,9 +40,17 @@ public class ProductCategoryController {
 		productCategoryService.save(productCategory);
 		return new ModelAndView("redirect:/productCategory");
 	}
-	@GetMapping(value="/edit/{id}")
+	
+	@PostMapping(params="details-edit")
+	public ModelAndView save2(@Valid ProductCategory productCategory) 
+	{
+		productCategoryService.save(productCategory);
+		return new ModelAndView("redirect:/productCategory");
+	}
+	
+	@GetMapping(value="/details-edit/{id}")
 	public ModelAndView edit(@PathVariable("id") ProductCategory productCategory) {
-		return new ModelAndView("productCategory/form","productCategory", productCategory);
+		return new ModelAndView("productCategory/details-edit","productCategory", productCategory);
 	}
 	
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout ::htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu"(menu)></nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body">
+			  	<h3 class="card-title">Promoção</h3>
+			  </div>
+			</div>
+			 <br/>
+			<div class="card">
+			  	<div class="card-body">
+					<div class="button">
+						<a href="form.html" th:href="@{/promotion/new}"
+						class="fa fa-plus-circle fa-5x" role="button" aria-hidden="true"></a>
+					</div>
+					<table class="table" id="promotion">
+						<thead class="thead-light"> 
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Promoção</th>
+								<th scope="col">Descrição</th>
+								<th scope="col">Data Inicial</th>
+								<th scope="col">Data Final</th>			
+							</tr>
+						</thead>
+						<tbody>
+							<tr scope="row" th:each="onepromotion : ${promotion}">
+								<td th:text="${onepromotion.promoId}"></td>
+								<td th:text="${onepromotion.promoName}"></td>
+								<td th:text="${onepromotion.description}"></td>
+								<td th:text="${#dates.format(onepromotion.initialDate, 'dd/MM/yyyy')}"></td>	
+								<td th:text="${#dates.format(onepromotion.finalDate, 'dd/MM/yyyy')}"></td>
+							</tr>
+						</tbody>
+					</table>
+		 		</div>
+			</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>

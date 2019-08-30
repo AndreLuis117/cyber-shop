@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Catalog {
 	@Id
@@ -20,6 +22,7 @@ public class Catalog {
 	private long catalogId;
 	private String name;
 	@Temporal(value = TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date deadLine;
 
 	@ManyToMany(cascade= {CascadeType.MERGE, CascadeType.REFRESH})
@@ -49,6 +52,5 @@ public class Catalog {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
-	
 	
 }

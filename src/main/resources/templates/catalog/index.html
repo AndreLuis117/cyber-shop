@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout ::htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu"(menu)></nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body">
+			  	<h3 class="card-title">Catalogo</h3>
+			  </div>
+			</div>
+			 <br/>
+			<div class="card">
+			  	<div class="card-body">
+					<div class="button">
+						<a href="form.html" th:href="@{/catalog/new}"
+						class="fa fa-plus-circle fa-5x" role="button" aria-hidden="true"></a>
+					</div>
+					<table class="table" id="catalog">
+						<thead class="thead-light"> 
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Nome do Catalogo</th>
+								<th scope="col">Produto</th>
+								<th scope="col">Data Limite</th>		
+							</tr>
+						</thead>
+						<tbody>
+							<tr scope="row" th:each="onecatalog : ${catalog}">
+								<td th:text="${onecatalog.catalogId}"></td>
+								<td th:text="${onecatalog.name}"></td>
+								<td th:text="${onecatalog.product}"></td>
+								<td th:text="${#dates.format(onecatalog.deadLine, 'dd/MM/yyyy')}"></td>	
+							</tr>
+						</tbody>
+					</table>
+		 		</div>
+			</div>
+			
+			<div class="row mt-3">
+				<div class="col-12 col-sm-3" th:each="onecatalog : ${catalog}">
+					<div class="card">
+					  <img src="..." class="card-img-top" alt="...">
+					  <div class="card-body">
+					    <h5 class="card-title" th:text="${onecatalog.name}"></h5>
+					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					    <a href="#" class="btn btn-primary">Go somewhere</a>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>

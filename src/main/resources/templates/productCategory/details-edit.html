@@ -13,7 +13,8 @@
 								    <div class="form-group">
 								        <label for="txtname">Nome</label>
 								        <input type="text" th:field="*{name}" class="form-control" 
-								        id="txtname" placeholder="Tipo de categoria" required disabled>
+								        id="txtname" placeholder="Tipo de categoria" disabled>
+								        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 								    </div>
 								    <div class="form-group">
 								    <label for="slcgenre">Status do categoria</label>

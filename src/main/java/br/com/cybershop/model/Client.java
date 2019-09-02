@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,19 +20,26 @@ public class Client {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long clientId;
 	@Column(length=800)
-	@NotNull
+	@NotNull()
+	@NotEmpty(message="Preencha este campo")
 	private String name;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String lastname;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String cpf;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String email;
+	@NotEmpty(message="Preencha este campo")
 	@NotNull
 	private String phoneNumber;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String password;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String genre;
 	@NotNull
 	@Temporal(value=TemporalType.TIMESTAMP)
@@ -40,17 +48,25 @@ public class Client {
 	@NotNull
 	private boolean status;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adressCep;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adressCity;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adress_Street;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adress_State;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adressNeighborhood;
 	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adressNumber;
+	@NotNull
+	@NotEmpty(message="Preencha este campo")
 	private String adressComplement;
 	
 	public String getAdressNumber() {

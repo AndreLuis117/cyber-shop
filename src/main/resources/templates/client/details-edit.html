@@ -20,31 +20,38 @@
 					        <input type="text" th:field="*{name}" class="form-control" 
 					        id="txtname" placeholder="Digite o nome" pattern="[A-za-z]+$" required oninvalid="setCustomValidity('Por favor, preencha o nome')" 
 					        onchange="try{setCustomValidity('')}catch(e){}" disabled>
+					        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtlastname">Sobrenome</label>
 					        <input type="text" th:field="*{lastname}" class="form-control" 
 					        id="txtlastname" placeholder="Digite o sobrenome" required disabled>
+					        <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtcpf">CPF</label>
 					        <input type="text" th:field="*{cpf}" class="form-control" 
 					        id="txtcpf" placeholder="Digite o CPF" required disabled>
+					        <p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtemail">E-mail</label>
 					        <input type="text" th:field="*{email}" class="form-control" 
 					        id="txtemail" placeholder="Digite o e-mail" required disabled>
+					        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div> 
 					    <div class="form-group">
 					        <label for="txtphonenumber">Número de telefone</label>
 					        <input type="text" th:field="*{phoneNumber}" class="form-control" 
 					        id="txtphonenumber" placeholder="Digite o número de telefone" required disabled>
+					        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div> 
 					    <div class="form-group">
 					        <label for="txtpassword">Senha</label>
 					        <input type="password" th:field="*{password}" class="form-control" 
 					        id="txtpassword" placeholder="Digite a senha" required disabled>
+					        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtpasswordconfirm">Confirmar senha</label>
@@ -88,36 +95,43 @@
 					        <label for="txtcep">CEP</label>
 					        <input type="text" th:field="*{adressCep}" class="form-control" 
 					        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392" required disabled>
+					        <p th:if="${#fields.hasErrors('adressCep')}" th:errors="*{adressCep}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 	                    <div class="form-group">
 					        <label for="txtstate">Estado</label>
 					        <input type="text" th:field="*{adress_State}" class="form-control" 
 					        id="txtstate" placeholder="Digite o estado" required disabled>
+					        <p th:if="${#fields.hasErrors('adress_State')}" th:errors="*{adress_State}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtcity">Cidade</label>
 					        <input type="text" th:field="*{adressCity}" class="form-control" 
 					        id="txtcity" placeholder="Digite a cidade" required disabled>
+					        <p th:if="${#fields.hasErrors('adressCity')}" th:errors="*{adressCity}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtneighborhood">Bairro</label>
 					        <input type="text" th:field="*{adressNeighborhood}" class="form-control" 
 					        id="txtneighborhood" placeholder="Digite a cidade" required disabled>
+					        <p th:if="${#fields.hasErrors('adressNeighborhood')}" th:errors="*{adressNeighborhood}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtstreet">Rua</label>
 					        <input type="text" th:field="*{adress_Street}" class="form-control" 
-					        id="txtstreet" placeholder="Digite a cidade" required disabled>
+					        id="txtstreet" placeholder="Digite a sua rua" required disabled>
+					        <p th:if="${#fields.hasErrors('adress_Street')}" th:errors="*{adress_Street}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtnumber">Número da residência</label>
 					        <input type="text" th:field="*{adressNumber}" class="form-control" 
 					        id="txtnumber" placeholder="Digite o número da residência" required disabled>
+					        <p th:if="${#fields.hasErrors('adressNumber')}" th:errors="*{adressNumber}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    <div class="form-group">
 					        <label for="txtcomplement">Complemento</label>
 					        <input type="text" th:field="*{adressComplement}" class="form-control" 
 					        id="txtcomplement" placeholder="Digite o complemento do endereço" required disabled>
+					        <p th:if="${#fields.hasErrors('adressComplement')}" th:errors="*{adressComplement}" class="alert alert-danger" style="margin-top: 10px;"></p>
 					    </div>
 					    
 					    <div class="form-row">

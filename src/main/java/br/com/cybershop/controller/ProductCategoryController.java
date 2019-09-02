@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,15 +36,21 @@ public class ProductCategoryController {
 	}
 	
 	@PostMapping(params="form")
-	public ModelAndView save(@Valid ProductCategory productCategory) 
+	public ModelAndView saveInsert(@Valid ProductCategory productCategory, BindingResult result) 
 	{
+		if(result.hasErrors()) {
+			return new ModelAndView("productCategory/form");
+		}
 		productCategoryService.save(productCategory);
 		return new ModelAndView("redirect:/productCategory");
 	}
 	
 	@PostMapping(params="details-edit")
-	public ModelAndView save2(@Valid ProductCategory productCategory) 
+	public ModelAndView saveEdit(@Valid ProductCategory productCategory, BindingResult result) 
 	{
+		if(result.hasErrors()) {
+			return new ModelAndView("productCategory/details-edit");
+		}
 		productCategoryService.save(productCategory);
 		return new ModelAndView("redirect:/productCategory");
 	}

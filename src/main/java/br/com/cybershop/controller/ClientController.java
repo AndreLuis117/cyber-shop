@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,15 +35,21 @@ public class ClientController {
 		return new ModelAndView("client/form");
 	}
 	@PostMapping(params="form")
-	public ModelAndView save(@Valid Client client) 
-	{
+	public ModelAndView saveInsert(@Valid Client client, BindingResult result) 
+	{	
+		if(result.hasErrors()) {
+			return new ModelAndView("client/form");
+		}
 		clientService.save(client);
 		return new ModelAndView("redirect:/client");
 	}
 	
 	@PostMapping(params="details-edit")
-	public ModelAndView save2(@Valid Client client) 
+	public ModelAndView saveEdit(@Valid Client client, BindingResult result) 
 	{
+		if(result.hasErrors()) {
+			return new ModelAndView("client/details-edit");
+		}
 		clientService.save(client);
 		return new ModelAndView("redirect:/client");
 	}

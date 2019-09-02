@@ -13,11 +13,12 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Tipo de categoria" required>
+				        id="txtname" placeholder="Tipo de categoria">
+				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
 				    <div class="form-group">
 				    <label for="slcgenre">Status do categoria</label>
-	                	<select class="form-control" id="slcStatus" th:field="*{status}" required>
+	                	<select class="form-control" id="slcStatus" th:field="*{status}">
 	                         <option th:value="true">Ativo</option>
 	                         <option th:value="false">Inativo</option>
 	                    </select>

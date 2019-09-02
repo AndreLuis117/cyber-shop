@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Product {
@@ -14,10 +16,16 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long productId;
+	@NotNull()
+	@NotEmpty(message="Preencha este campo")
 	private String name;
 	private Double unitPrice;
 	@Column(length=800)
+	@NotNull()
+	@NotEmpty(message="Preencha este campo")
 	private String description;
+	@NotNull()
+	@NotEmpty(message="Preencha este campo")
 	private String brand;
 	private boolean status;
 	

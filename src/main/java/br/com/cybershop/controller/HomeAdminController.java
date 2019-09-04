@@ -10,11 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/home-admin")
+public class HomeAdminController {
 
 	@GetMapping()
 	public ModelAndView index() {
-		 return new ModelAndView("home/index");
+		 return new ModelAndView("home-admin/index");
 	}
 }

@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+   cybershop:
+     depends_on:
+       - cybershopdb  
+     image: cybershop:latest
+     ports:
+       - "8080:8080"
+     restart: always
+     environment:
+       - SPRING_PROFILES_ACTIVE=prod
+       - CYBERSHOP_DB_HOST=jdbc:mysql://cybershopdb:3306/cybershopdb?useTimezone=true&serverTimezone=UTC
+       - CYBERSHOP_DB_USERNAME=cyberShopDbAcess
+       - CYBERSHOP_DB_PASSWORD=cyber@117
+   cybershopdb:
+     image: mysql:5.7
+     restart: always
+#     ports:
+#       - "3306:3306"
+     environment:
+       MYSQL_ROOT_PASSWORD: cyberShopDbAcess
+       MYSQL_DATABASE: cybershopdb
+       MYSQL_USER: cyberShopDbAcess
+       MYSQL_PASSWORD: cyber@117

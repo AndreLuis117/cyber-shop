@@ -13,18 +13,20 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome da Promoção</label>
 				        <input type="text" th:field="*{promoName}" class="form-control" 
-				        id="txtname" placeholder="Nome da Promoção" required>
+				        id="txtname" placeholder="Nome da Promoção">
+				        <p th:if="${#fields.hasErrors('promoName')}" th:errors="*{promoName}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
 				     <div class="form-group">
 				        <label for="txtdescription">Descrição</label>
 				        <input type="text" th:field="*{description}" class="form-control" 
-				        id="txtdescription" placeholder="Descrição" required>
+				        id="txtdescription" placeholder="Descrição">
+				        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
 				   <div class="form-group">
 	                        <label for="txtDate">Data Inicial</label>
 	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 	                            <input id = "initialDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
-	                                th:field="*{initialDate}" required/>
+	                                th:field="*{initialDate}" />
 	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>
@@ -34,7 +36,7 @@
 	                        <label for="txtDate">Data Final</label>
 	                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
 	                            <input id = "finalDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="dd/mm/yyyy" size="8" maxlength="8"
-	                                th:field="*{finalDate}" required/>
+	                                th:field="*{finalDate}" />
 	                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>

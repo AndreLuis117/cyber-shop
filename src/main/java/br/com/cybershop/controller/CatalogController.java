@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +43,12 @@ public class CatalogController {
 	}
 	
 	@PostMapping(params="form")
-	public ModelAndView save(@Valid Catalog catalog) 
+	public ModelAndView saveInsert(@Valid Catalog catalog, BindingResult result) 
 	{
+		if(result.hasErrors()) {
+			return new ModelAndView("catalog/form");
+		}
+		
 		catalogService.save(catalog);
 		return new ModelAndView("redirect:/catalog");
 	}

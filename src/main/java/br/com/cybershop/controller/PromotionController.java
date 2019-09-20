@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,8 +40,12 @@ public class PromotionController {
 	}
 	
 	@PostMapping(params="form")
-	public ModelAndView save(@Valid Promotion promotion) 
+	public ModelAndView saveInsert(@Valid Promotion promotion, BindingResult result) 
 	{
+		if(result.hasErrors()) {
+			return new ModelAndView("promotion/form");
+	}
+	
 		promotionService.save(promotion);
 		return new ModelAndView("redirect:/promotion");
 	}

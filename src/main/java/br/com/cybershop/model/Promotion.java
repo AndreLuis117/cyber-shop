@@ -10,15 +10,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Promotion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long promoId;
+	@NotNull
+	@NotEmpty(message="Preencha esse campo")
 	private String promoName;
+	@NotNull
+	@NotEmpty(message="Preencha esse campo")
 	private String description;
+	@NotNull
+	@Temporal(value=TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date initialDate;
+	@NotNull
+	@Temporal(value=TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date finalDate;
 	//
 	@OneToMany(cascade = CascadeType.ALL)

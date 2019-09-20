@@ -13,7 +13,8 @@
 				    <div class="form-group">
 				        <label for="txtname">Nome do Catalogo</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Nome do Catalogo" required>
+				        id="txtname" placeholder="Nome do Catalogo" >
+				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
 				     <div class="form-group">
                         <label for="Product">Produto</label>

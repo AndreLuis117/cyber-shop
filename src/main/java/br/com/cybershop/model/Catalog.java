@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,6 +22,8 @@ public class Catalog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long catalogId;
+	@NotNull
+	@NotEmpty(message = "Preencha essa campo")
 	private String name;
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")

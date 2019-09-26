@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body"> <div></div>
+			    <h3 class="card-title">Catalogo</h3>
+ 			<div>
+				<form th:action="@{/catalog/(form)}" th:object="${catalog}" action="#" method="post">
+					<input type="hidden" id="txtid" th:field="*{catalogId}" />
+				    <div class="form-group">
+				        <label for="txtname">Nome do Catalogo</label>
+				        <input type="text" th:field="*{name}" class="form-control" 
+				        id="txtname" placeholder="Nome do Catalogo" required>
+				    </div>
+				     <div class="form-group">
+                        <label for="Product">Produto</label>
+                        <select class="form-control" id="slcProduct" th:field="*{product}">
+                            <option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
+                        </select>
+                    </div>
+				   <div class="form-group">
+	                        <label for="txtDate">Data Limite</label>
+	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                            <input id = "deadLine" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{deadLine}" required/>
+	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+				    <button type="submit" class="btn btn-success">Enviar</button>
+				</form>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+            $(function () {
+            	//Adiciona mascara para os campos
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });    
+            });
+        </script>
+	</body>
+</html>

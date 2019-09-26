@@ -56,5 +56,4 @@ public class Catalog {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
-	
 }

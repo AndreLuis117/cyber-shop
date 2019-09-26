@@ -45,8 +45,12 @@ public class CatalogController {
 	@PostMapping(params="form")
 	public ModelAndView saveInsert(@Valid Catalog catalog, BindingResult result) 
 	{
+		List<Product> listProduct = productRepository.findAll();
 		if(result.hasErrors()) {
-			return new ModelAndView("catalog/form");
+			HashMap<String, Object> dados = new HashMap<>();
+			dados.put("listProduct", listProduct);
+			dados.put("catalog",catalog);
+			return new ModelAndView("catalog/form",dados);
 		}
 		
 		catalogService.save(catalog);

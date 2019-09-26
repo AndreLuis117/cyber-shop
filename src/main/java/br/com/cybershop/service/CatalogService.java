@@ -8,6 +8,7 @@ import br.com.cybershop.model.Catalog;
 
 @Service
 public interface CatalogService {
+	
 	List<Catalog> getAll();
 	void save(Catalog catalog);
 	void delete(Catalog catalog);

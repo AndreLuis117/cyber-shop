@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body"> <div></div>
+			    <h3 class="card-title">Promoção</h3>
+ 			<div>
+				<form th:action="@{/promotion/(form)}" th:object="${promotion}" action="#" method="post">
+					<input type="hidden" id="txtid" th:field="*{promoId}" />
+				    <div class="form-group">
+				        <label for="txtname">Nome da Promoção</label>
+				        <input type="text" th:field="*{promoName}" class="form-control" 
+				        id="txtname" placeholder="Nome da Promoção" required>
+				    </div>
+				     <div class="form-group">
+				        <label for="txtdescription">Descrição</label>
+				        <input type="text" th:field="*{description}" class="form-control" 
+				        id="txtdescription" placeholder="Descrição" required>
+				    </div>
+				   <div class="form-group">
+	                        <label for="txtDate">Data Inicial</label>
+	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                            <input id = "initialDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{initialDate}" required/>
+	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="txtDate">Data Final</label>
+	                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+	                            <input id = "finalDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{finalDate}" required/>
+	                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+				    <button type="submit" class="btn btn-success">Enviar</button>
+				</form>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+            $(function () {
+            	//Adiciona mascara para os campos
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+                $('#datetimepicker2').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+            });
+        </script>
+	</body>
+</html>

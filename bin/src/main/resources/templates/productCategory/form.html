@@ -2,19 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:include="layout :: htmlhead"></head>
 	<body>
-		<div class="container">
-			<nav th:replace="layout :: menu">(menu)</nav>
- 			<div class="border border-dark">
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body"> <div></div>
+			    <h3 class="card-title">Categoria de Produtos</h3>
+ 			<div>
 				<form th:action="@{/productCategory/(form)}" th:object="${productCategory}" action="#" method="post">
 					<input type="hidden" id="txtid" th:field="*{categoryId}" />
 				    <div class="form-group">
 				        <label for="txtname">Nome</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
 				        id="txtname" placeholder="Tipo de categoria">
+				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
-				    <button type="submit" class="btn btn-primary">Enviar</button>
+				    <div class="form-group">
+				    <label for="slcgenre">Status do categoria</label>
+	                	<select class="form-control" id="slcStatus" th:field="*{status}">
+	                         <option th:value="true">Ativo</option>
+	                         <option th:value="false">Inativo</option>
+	                    </select>
+				    </div>
+				    <button type="submit" class="btn btn-success">Enviar</button>
 				</form>
 			</div>
+		</div>
+		</div>
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 	</body>

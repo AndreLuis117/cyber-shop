@@ -46,8 +46,13 @@ public class ProductController {
 	@PostMapping(params="form")
 	public ModelAndView saveInsert(@Valid Product product,BindingResult result) 
 	{
+		List<ProductCategory> listCategory = productCategoryRepository.findAll();
 		if(result.hasErrors()) {
-			return new ModelAndView("product/form");
+			HashMap<String, Object> dados = new HashMap<>();
+			dados.put("listCategory", listCategory);
+			dados.put("product",product);
+			return new ModelAndView("product/form",dados);
+			
 		}
 		productService.save(product);
 		return new ModelAndView("redirect:/product");

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+			
+			
+	 			<div>
+					<form th:action="@{/client/(details-edit)}" th:object="${client}" action="#" method="post">
+					<div class="card">
+			  			<div class="card-body"> <div></div>
+			    			<h3 id="headerMsg" class="card-title">Detalhes do cliente</h3>
+						<input type="hidden" id="txtid" th:field="*{clientId}" />
+					    <div>
+	                    	<h5>Informações do cliente</h5>
+	                    </div>
+					    <div class="form-group">
+					        <label for="txtname">Nome</label>
+					        <input type="text" th:field="*{name}" class="form-control" 
+					        id="txtname" placeholder="Digite o nome" pattern="[A-za-z]+$" required oninvalid="setCustomValidity('Por favor, preencha o nome')" 
+					        onchange="try{setCustomValidity('')}catch(e){}" disabled>
+					        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtlastname">Sobrenome</label>
+					        <input type="text" th:field="*{lastname}" class="form-control" 
+					        id="txtlastname" placeholder="Digite o sobrenome" required disabled>
+					        <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtcpf">CPF</label>
+					        <input type="text" th:field="*{cpf}" class="form-control" 
+					        id="txtcpf" placeholder="Digite o CPF" required disabled>
+					        <p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtemail">E-mail</label>
+					        <input type="text" th:field="*{email}" class="form-control" 
+					        id="txtemail" placeholder="Digite o e-mail" required disabled>
+					        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div> 
+					    <div class="form-group">
+					        <label for="txtphonenumber">Número de telefone</label>
+					        <input type="text" th:field="*{phoneNumber}" class="form-control" 
+					        id="txtphonenumber" placeholder="Digite o número de telefone" required disabled>
+					        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div> 
+					    <div class="form-group">
+					        <label for="txtpassword">Senha</label>
+					        <input type="password" th:field="*{password}" class="form-control" 
+					        id="txtpassword" placeholder="Digite a senha" required disabled>
+					        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtpasswordconfirm">Confirmar senha</label>
+					        <input type="password" class="form-control" 
+					        id="txtpasswordconfirm" placeholder="Digite a senha novamente" required disabled>
+					    </div>
+					    <div class="form-group">
+	                        <label for="slcgenre">Sexo</label>
+	                        <select class="form-control" id="slcgenre" th:field="*{genre}" required disabled>
+	                            <option th:value="M">Masculino</option>
+	                            <option th:value="F">Feminino</option>
+	                            <option th:value="O">Outro</option>
+	                        </select>
+	                    </div>
+					    <div class="form-group">
+	                        <label for="txtDate">Data Nascimento</label>
+	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                            <input id = "birthDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{birthDate}" required disabled/>
+	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="slcgenre">Status do cliente</label>
+	                        <select class="form-control" id="slcStatus" th:field="*{status}" required disabled>
+	                            <option th:value="true">Ativo</option>
+	                            <option th:value="false">Inativo</option>
+	                        </select>
+	                    </div>
+	        	</div>
+			</div>
+	                    <br/>
+	                    <div class="card">
+			  			<div class="card-body">
+			    			<h5 id="headerMsg" class="card-title">Informações de endereço do cliente</h5>
+	                    
+	                    
+	                    <div class="form-group">
+					        <label for="txtcep">CEP</label>
+					        <input type="text" th:field="*{adressCep}" class="form-control" 
+					        id="txtcep" placeholder="Digite o CEP apenas com numeros ex: 89247392" required disabled>
+					        <p th:if="${#fields.hasErrors('adressCep')}" th:errors="*{adressCep}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+	                    <div class="form-group">
+					        <label for="txtstate">Estado</label>
+					        <input type="text" th:field="*{adress_State}" class="form-control" 
+					        id="txtstate" placeholder="Digite o estado" required disabled>
+					        <p th:if="${#fields.hasErrors('adress_State')}" th:errors="*{adress_State}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtcity">Cidade</label>
+					        <input type="text" th:field="*{adressCity}" class="form-control" 
+					        id="txtcity" placeholder="Digite a cidade" required disabled>
+					        <p th:if="${#fields.hasErrors('adressCity')}" th:errors="*{adressCity}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtneighborhood">Bairro</label>
+					        <input type="text" th:field="*{adressNeighborhood}" class="form-control" 
+					        id="txtneighborhood" placeholder="Digite a cidade" required disabled>
+					        <p th:if="${#fields.hasErrors('adressNeighborhood')}" th:errors="*{adressNeighborhood}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtstreet">Rua</label>
+					        <input type="text" th:field="*{adress_Street}" class="form-control" 
+					        id="txtstreet" placeholder="Digite a sua rua" required disabled>
+					        <p th:if="${#fields.hasErrors('adress_Street')}" th:errors="*{adress_Street}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtnumber">Número da residência</label>
+					        <input type="text" th:field="*{adressNumber}" class="form-control" 
+					        id="txtnumber" placeholder="Digite o número da residência" required disabled>
+					        <p th:if="${#fields.hasErrors('adressNumber')}" th:errors="*{adressNumber}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    <div class="form-group">
+					        <label for="txtcomplement">Complemento</label>
+					        <input type="text" th:field="*{adressComplement}" class="form-control" 
+					        id="txtcomplement" placeholder="Digite o complemento do endereço" required disabled>
+					        <p th:if="${#fields.hasErrors('adressComplement')}" th:errors="*{adressComplement}" class="alert alert-danger" style="margin-top: 10px;"></p>
+					    </div>
+					    
+					    <div class="form-row">
+					    	<button type="button" id="editButton" class= "btn btn-primary btn-lg" style="margin-right: 15px">
+				           		<i class="fa fa-pencil" aria-hidden="true"></i>
+				          	</button>
+					    				
+					    	<button type="submit" class="btn btn-primary btn-lg" id="send" style="display:none">
+					    		<i class="fa fa-floppy-o" aria-hidden="true"></i>
+					    	</button>
+					    </div>
+					    
+					    </div>
+	                    </div>
+					</form>
+				
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		   <script type="text/javascript">
+            
+		   $(function(){
+				 
+				 $("#editButton").click(function() {
+				 document.getElementById("txtname").disabled = false;
+				 document.getElementById("txtlastname").disabled = false;
+				 document.getElementById("txtcpf").disabled = false;
+				 document.getElementById("txtemail").disabled = false;
+				 document.getElementById("txtphonenumber").disabled = false;
+				 document.getElementById("txtpassword").disabled = false;
+				 document.getElementById("txtpasswordconfirm").disabled = false; 
+				 document.getElementById("slcgenre").disabled = false;
+				 document.getElementById("birthDate").disabled = false;  
+				 document.getElementById("slcStatus").disabled = false; 
+				 document.getElementById("txtcep").disabled = false; 
+				 document.getElementById("txtstate").disabled = false; 
+				 document.getElementById("txtcity").disabled = false; 
+				 document.getElementById("txtneighborhood").disabled = false; 
+				 document.getElementById("txtstreet").disabled = false; 
+				 document.getElementById("txtnumber").disabled = false; 
+				 document.getElementById("txtcomplement").disabled = false; 
+				 document.getElementById("send").style.display = "block";
+				 $('#headerMsg').text('Editar cliente');
+	 
+				 });
+			 })
+		   
+		   
+		   $(function () {
+            	//Adiciona mascara para os campos
+            	$("#txtcpf").mask("999.999.999-99");
+            	$("#txtcep").mask("99999-999");
+            	$("#txtphonenumber").mask("(99) 99999-9999");
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+                
+            });
+            
+            $(document).ready(function() {
+
+                function limpa_formulário_cep() {
+                    // Limpa valores do formulário de cep.
+                    $("#txtstreet").val("");
+                    $("#txtneighborhood").val("");
+                    $("#txtcity").val("");
+                    $("#txtstate").val("");
+                }
+                
+                //Quando o campo cep perde o foco.
+                $("#txtcep").blur(function() {
+
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = $(this).val().replace(/\D/g, '');
+
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
+
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
+
+                        //Valida o formato do CEP.
+                        if(validacep.test(cep)) {
+
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            $("#txtstreet").val("...");
+                            $("#txtneighborhood").val("...");
+                            $("#txtcity").val("...");
+                            $("#txtstate").val("...");
+                         
+
+                            //Consulta o webservice viacep.com.br/
+                            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#txtstreet").val(dados.logradouro);
+                                    $("#txtneighborhood").val(dados.bairro);
+                                    $("#txtcity").val(dados.localidade);
+                                    $("#txtstate").val(dados.uf);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+                            alert("Formato de CEP inválido.");
+                        }
+                    } //end if.
+                    else {
+                        //cep sem valor, limpa formulário.
+                        limpa_formulário_cep();
+                    }
+                });
+            });
+            
+        </script>
+        </div>
+        </div>
+	</body>
+</html>

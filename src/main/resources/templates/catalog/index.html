@@ -22,7 +22,8 @@
 								<th scope="col">ID</th>
 								<th scope="col">Nome do Catalogo</th>
 								<th scope="col">Produto</th>
-								<th scope="col">Data Limite</th>		
+								<th scope="col">Data Limite</th>	
+								<th scope="col">Detalhes</th>	
 							</tr>
 						</thead>
 						<tbody>
@@ -30,7 +31,8 @@
 								<td th:text="${onecatalog.catalogId}"></td>
 								<td th:text="${onecatalog.name}"></td>
 								<td th:text="${onecatalog.product}"></td>
-								<td th:text="${#dates.format(onecatalog.deadLine, 'dd/MM/yyyy')}"></td>	
+								<td th:text="${#dates.format(onecatalog.deadLine, 'dd/MM/yyyy')}"></td>
+								<td> <a th:href="@{'/catalog/details-edit/' + ${onecatalog.catalogId}}" class= "btn btn-primary btn-lg"><i class="fa fa-list-alt" aria-hidden="true"></i></a></td>	
 							</tr>
 						</tbody>
 					</table>

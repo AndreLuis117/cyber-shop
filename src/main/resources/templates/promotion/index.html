@@ -23,7 +23,8 @@
 								<th scope="col">Promoção</th>
 								<th scope="col">Descrição</th>
 								<th scope="col">Data Inicial</th>
-								<th scope="col">Data Final</th>			
+								<th scope="col">Data Final</th>	
+								<th scope="col">Detalhes</th>			
 							</tr>
 						</thead>
 						<tbody>
@@ -33,6 +34,7 @@
 								<td th:text="${onepromotion.description}"></td>
 								<td th:text="${#dates.format(onepromotion.initialDate, 'dd/MM/yyyy')}"></td>	
 								<td th:text="${#dates.format(onepromotion.finalDate, 'dd/MM/yyyy')}"></td>
+								<td> <a th:href="@{'/promotion/details-edit/' + ${onepromotion.promoId}}" class= "btn btn-primary btn-lg"><i class="fa fa-list-alt" aria-hidden="true"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

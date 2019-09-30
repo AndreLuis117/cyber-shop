@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body"> <div></div>
+			     <h5 id="headerMsg" class="card-title">Detalhes da promoção</h5>
+ 			<div>
+				<form th:action="@{/promotion/(details-edit)}" th:object="${promotion}" action="#" method="post">
+					<input type="hidden" id="txtid" th:field="*{promoId}" />
+				    <div class="form-group">
+				        <label for="txtname">Nome da Promoção</label>
+				        <input type="text" th:field="*{promoName}" class="form-control" 
+				        id="txtname" placeholder="Nome da Promoção" disabled>
+				        <p th:if="${#fields.hasErrors('promoName')}" th:errors="*{promoName}" class="alert alert-danger" style="margin-top: 10px;"></p>
+				    </div>
+				     <div class="form-group">
+				        <label for="txtdescription">Descrição</label>
+				        <input type="text" th:field="*{description}" class="form-control" 
+				        id="txtdescription" placeholder="Descrição" disabled>
+				        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="alert alert-danger" style="margin-top: 10px;"></p>
+				    </div>
+				   <div class="form-group">
+	                        <label for="txtDate">Data Inicial</label>
+	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                            <input id = "initialDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{initialDate}" disabled/>
+	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="txtDate">Data Final</label>
+	                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+	                            <input id = "finalDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="dd/mm/yyyy" size="8" maxlength="8"
+	                                th:field="*{finalDate}" disabled/>
+	                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                            </div>
+	                        </div>
+	                    </div>
+				    <div class="form-row">
+				    	<button type="button" id="editButton" class= "btn btn-primary btn-lg" style="margin-right: 15px">
+				        	<i class="fa fa-pencil" aria-hidden="true"></i>
+				        </button>
+					    				
+						<button type="submit" class="btn btn-primary btn-lg" id="send" style="display:none">
+					    	<i class="fa fa-floppy-o" aria-hidden="true"></i>
+					    </button>				
+				    </div>
+				</form>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+		$(function(){
+			 $("#editButton").click(function() {
+			 document.getElementById("txtname").disabled = false;
+			 document.getElementById("txtdescription").disabled = false;
+			 document.getElementById("initialDate").disabled = false;
+			 document.getElementById("finalDate").disabled = false;
+			 document.getElementById("send").style.display = "block";
+			 $('#headerMsg').text('Editar promoção');
+
+			 });
+		 })
+            $(function () {
+            	//Adiciona mascara para os campos
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+                $('#datetimepicker2').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+            });
+        </script>
+	</body>
+</html>

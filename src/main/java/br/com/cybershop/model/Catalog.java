@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -31,7 +32,16 @@ public class Catalog {
 
 	@ManyToMany(cascade= {CascadeType.MERGE, CascadeType.REFRESH})
 	private List<Product> product = new ArrayList<Product>();
+	/*@OneToMany(cascade = CascadeType.ALL)
+	private List<CatalogItems> CatalogItems = new ArrayList<CatalogItems>(); 
 	
+	public List<CatalogItems> getCatalogItems() {
+		return CatalogItems;
+	}
+	public void setCatalogItems(List<CatalogItems> catalogItems) {
+		CatalogItems = catalogItems;
+	}
+	*/
 	public long getCatalogId() {
 		return catalogId;
 	}
@@ -50,6 +60,7 @@ public class Catalog {
 	public void setDeadLine(Date deadLine) {
 		this.deadLine = deadLine;
 	}
+	
 	public List<Product> getProduct() {
 		return product;
 	}

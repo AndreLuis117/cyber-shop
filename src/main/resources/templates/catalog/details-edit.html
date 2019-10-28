@@ -6,41 +6,67 @@
 		<div class="container mt-3">
 		<div class="card">
 			  <div class="card-body"> <div></div>
-			    <h5 id="headerMsg" class="card-title">Detalhes do catalogo</h5>
+			    <h3 class="card-title">Catalogo</h3>
  			<div>
-				<form th:action="@{/catalog/(details-edit)}" th:object="${catalog}" action="#" method="post">
+				<form th:action="@{/catalog/(catalogdetails-edit)}" th:object="${catalog}" action="#" method="post">
 					<input type="hidden" id="txtid" th:field="*{catalogId}" />
 				    <div class="form-group">
 				        <label for="txtname">Nome do Catalogo</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Nome do Catalogo" disabled>
+				        id="txtname" placeholder="Nome do Catalogo" >
 				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
-				     <div class="form-group">
-                        <label for="Product">Produto</label>
-                        <select class="form-control" id="slcProduct" th:field="*{product}" required disabled>
-                            <option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
-                        </select>
-                    </div>
 				   <div class="form-group">
 	                        <label for="txtDate">Data Limite</label>
 	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 	                            <input id = "deadLine" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
-	                                th:field="*{deadLine}" disabled/>
+	                                th:field="*{deadLine}" required/>
 	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>
 	                        </div>
 	                    </div>
-	                    	<div class="form-row">
-				            	<button type="button" id="editButton" class= "btn btn-primary btn-lg" style="margin-right: 15px">
-				                	<i class="fa fa-pencil" aria-hidden="true"></i>
-				                </button>
-					    				
-					    		<button type="submit" class="btn btn-primary btn-lg" id="send" style="display:none">
-					    			<i class="fa fa-floppy-o" aria-hidden="true"></i>
-					    		</button>				
-				           </div>
+	                    <div class="card">
+                        <div class="card-header">Vincar Procedimentos</div>
+                        <div class="card-body">
+                          <div class="container" th:object="${newCatalogItems}">
+                              <div class="row">
+                                <div class="col-sm">
+                                  <div class="form-group">
+                        		  <label for="Product">Produto</label>
+                        		  <select class="form-control" id="slcProduct" th:field="${newCatalogItems.product}">
+                            		<option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
+                        		  </select>
+                   				  </div>
+                                  </div>
+                                  <div class="col-sm">
+                                    <button type="submit" name="insertproc" class="btn btn-primary">Inserir item</button>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Produtos</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr scope="row" th:each="procreali, stat : ${catalog.catalogItems}">
+                                        <input type="hidden" th:field="${catalog.catalogItems[__${stat.index}__].product}"/>
+                                        <td th:text="${catalog.catalogItems[__${stat.index}__].product.name}"></td>
+                                        <td th:text="${catalog.catalogItems[__${stat.index}__].product.unitPrice}"></td>
+                                        <td>
+                                            <button type="submit" name="removeproc" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                           
+                        </div>
+                        </div>
+				    <button type="submit" name="save" class="btn btn-success">Enviar</button>
 				</form>
 			</div>
 		</div>
@@ -56,10 +82,9 @@
 			 document.getElementById("deadLine").disabled = false;
 			 document.getElementById("send").style.display = "block";
 			 $('#headerMsg').text('Editar catalogo');
-
 			 });
 		 })
-            $(function () {
+         $(function () {
             	//Adiciona mascara para os campos
                 $('#datetimepicker1').datetimepicker({
                     format:"DD/MM/YYYY"                   

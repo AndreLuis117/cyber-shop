@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.cybershop.model.Catalog;
+import br.com.cybershop.model.CatalogItems;
 import br.com.cybershop.model.Product;
+import br.com.cybershop.repository.CatalogItemsRepository;
+import br.com.cybershop.repository.CatalogRepository;
 import br.com.cybershop.repository.ProductRepository;
 import br.com.cybershop.service.CatalogService;
 
@@ -30,7 +35,13 @@ public class CatalogController {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@GetMapping()
+	@Autowired
+	private CatalogItemsRepository catalogItemsRepository;
+	
+	@Autowired
+	private CatalogRepository catalogRepository;
+	
+	@GetMapping("")
 	public ModelAndView index() {
 		List<Catalog> list =  catalogService.getAll();
 		return new ModelAndView("catalog/index", "catalog", list);
@@ -38,19 +49,78 @@ public class CatalogController {
 	
 	@GetMapping("/new")
 	public ModelAndView createForm(@ModelAttribute Catalog catalog) {
-		List<Product> listProduct = productRepository.findAll();
-		return new ModelAndView("catalog/form", "listProduct", listProduct);
+		List<Product> listProduct = this.productRepository.findAll();
+		
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("listProduct", listProduct);
+		dados.put("newCatalogItems", new CatalogItems());
+		
+		
+		return new ModelAndView("catalog/form", dados);
 	}
+	
+	@PostMapping(params = {"save"})
+	public ModelAndView saveInsert(@Valid Catalog catalog, @Valid CatalogItems catalogItems, BindingResult result, RedirectAttributes redirect) {
+		catalog = this.catalogRepository.save(catalog);
+		return new ModelAndView("redirect:/catalog");
+	}
+	
+	@PostMapping(params= {"insertproc"})
+    public ModelAndView insertproc(Catalog catalog, CatalogItems catalogItems, BindingResult result, RedirectAttributes redirect) {
+		List<Product> listProduct = this.productRepository.findAll();
+		
+		catalog.getCatalogItems().add(catalogItems);
+		
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("catalgo", catalog);
+		dados.put("listProduct", listProduct);
+		dados.put("newCatalogItems", new CatalogItems());
+		
+		
+		return new ModelAndView("catalog/form", dados);
+    }
+	
+	@PostMapping(params= {"removeproc"})
+    public ModelAndView removeproc(@RequestParam(name = "removeproc") int index, Catalog catalog, CatalogItems catalogItems, BindingResult result, RedirectAttributes redirect) {
+		List<Product> listProduct = this.productRepository.findAll();
+       
+        catalog.getCatalogItems().remove(index);
+   
+        HashMap<String, Object> dados = new HashMap<String, Object>();
+        dados.put("catalgo", catalog);
+		dados.put("listProduct", listProduct);
+		dados.put("newCatalogItems", new CatalogItems());
+       
+		return new ModelAndView("catalog/form", dados);
+    }
+	
+    @GetMapping(value="/details-edit/{id}")
+    public ModelAndView edit(@PathVariable("id") Catalog catalog) {
+    	List<Product> listProduct = this.productRepository.findAll();
+		
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("catalgo", catalog);
+		dados.put("listProduct", listProduct);
+		dados.put("newCatalogItems", new CatalogItems());
+       
+        return new ModelAndView("catalog/form",dados);
+    }
+   
+   
+    @GetMapping(value="/delete/{id}")
+    public ModelAndView delete(@PathVariable ("id") Long id, RedirectAttributes redirect) {
+        this.catalogRepository.deleteById(id);
+        return new ModelAndView("redirect:/catalog");
+    }
+    
+	/*
 	
 	@PostMapping(params="form")
 	public ModelAndView saveInsert(@Valid Catalog catalog, BindingResult result) 
 	{
-		List<Product> listProduct = productRepository.findAll();
 		if(result.hasErrors()) {
-			HashMap<String, Object> dados = new HashMap<>();
-			dados.put("listProduct", listProduct);
-			dados.put("catalog",catalog);
-			return new ModelAndView("catalog/form",dados);
+			System.out.println(result.getAllErrors());
+			return new ModelAndView("catalog/form");
 		}
 		
 		catalogService.save(catalog);
@@ -66,10 +136,6 @@ public class CatalogController {
 	
 	@GetMapping(value="/details-edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Catalog catalog) {
-		List<Product> listProduct = productRepository.findAll();
-		HashMap<String, Object> dados = new HashMap<String, Object>();
-		dados.put("catalog", catalog);
-		dados.put("listProduct", listProduct);
 		return new ModelAndView("catalog/details-edit", dados);
 	}
 	
@@ -78,6 +144,6 @@ public class CatalogController {
 		 catalogService.delete(catalog);
 		return new ModelAndView("client/form","catalog",catalog);
 	}
-
+*/
 
 }

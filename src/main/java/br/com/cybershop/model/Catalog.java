@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -30,18 +31,10 @@ public class Catalog {
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date deadLine;
 
-	@ManyToMany(cascade= {CascadeType.MERGE, CascadeType.REFRESH})
-	private List<Product> product = new ArrayList<Product>();
-	/*@OneToMany(cascade = CascadeType.ALL)
-	private List<CatalogItems> CatalogItems = new ArrayList<CatalogItems>(); 
+	@OneToMany(cascade= CascadeType.ALL, orphanRemoval=true)
+	@JoinColumn(name="catalog_id")
+	private List<CatalogItems> catalogItems = new ArrayList<CatalogItems>();
 	
-	public List<CatalogItems> getCatalogItems() {
-		return CatalogItems;
-	}
-	public void setCatalogItems(List<CatalogItems> catalogItems) {
-		CatalogItems = catalogItems;
-	}
-	*/
 	public long getCatalogId() {
 		return catalogId;
 	}
@@ -60,11 +53,12 @@ public class Catalog {
 	public void setDeadLine(Date deadLine) {
 		this.deadLine = deadLine;
 	}
+	public List<CatalogItems> getCatalogItems() {
+		return catalogItems;
+	}
+	public void setCatalogItems(List<CatalogItems> catalogItems) {
+		this.catalogItems = catalogItems;
+	}
 	
-	public List<Product> getProduct() {
-		return product;
-	}
-	public void setProduct(List<Product> product) {
-		this.product = product;
-	}
+
 }

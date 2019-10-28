@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,7 +14,6 @@ public class CatalogItems {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long catalogItemsId;
-	
 	public long getCatalogItemsId() {
 		return catalogItemsId;
 	}
@@ -25,7 +25,7 @@ public class CatalogItems {
 	@OneToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
 	private Catalog catalog;
 	
-	@OneToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
+	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH},optional=true)
 	private Product product;
 	
 	public Catalog getCatalog() {

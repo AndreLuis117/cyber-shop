@@ -16,12 +16,6 @@
 				        id="txtname" placeholder="Nome do Catalogo" >
 				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
-				     <div class="form-group">
-                        <label for="Product">Produto</label>
-                        <select class="form-control" id="slcProduct" th:field="*{product}">
-                            <option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
-                        </select>
-                    </div>
 				   <div class="form-group">
 	                        <label for="txtDate">Data Limite</label>
 	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -32,7 +26,47 @@
 	                            </div>
 	                        </div>
 	                    </div>
-				    <button type="submit" class="btn btn-success">Enviar</button>
+	                    <div class="card">
+                        <div class="card-header">Vincar Procedimentos</div>
+                        <div class="card-body">
+                          <div class="container" th:object="${newCatalogItems}">
+                              <div class="row">
+                                <div class="col-sm">
+                                  <div class="form-group">
+                        		  <label for="Product">Produto</label>
+                        		  <select class="form-control" id="slcProduct" th:field="${newCatalogItems.product}">
+                            		<option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
+                        		  </select>
+                   				  </div>
+                                  </div>
+                                  <div class="col-sm">
+                                    <button type="submit" name="insertproc" class="btn btn-primary">Inserir item</button>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Produtos</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr scope="row" th:each="procreali, stat : ${catalog.catalogItems}">
+                                        <input type="hidden" th:field="${catalog.catalogItems[__${stat.index}__].product}"/>
+                                        <td th:text="${catalog.catalogItems[__${stat.index}__].product.name}"></td>
+                                        <td th:text="${catalog.catalogItems[__${stat.index}__].product.unitPrice}"></td>
+                                        <td>
+                                            <button type="submit" name="removeproc" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                           
+                        </div>
+                        </div>
+				    <button type="submit" name="save" class="btn btn-success">Enviar</button>
 				</form>
 			</div>
 		</div>

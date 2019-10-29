@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu">(menu)</nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body"> <div></div>
+			    <h3 class="card-title">Nova entrada de produto</h3>
+ 			<div>
+				<form th:action="@{/stockInput/(form)}" th:object="${stockInput}" action="#" method="post">
+					<input type="hidden" id="txtid" th:field="*{entryId}" />
+				    <div class="form-group">
+                        <label for="Product">Produto</label>
+                        <select class="form-control" id="slcProduct" th:field="*{product}">
+                            <option th:each="oneproduct : ${listProduct}" th:value="${oneproduct.productId}" th:text="${oneproduct.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+							<label for="txtquantity">Quantidade</label>
+							<input type="text" th:field="*{quantity}" class="form-control" 
+							id="txtquantity" placeholder="Quantidade de produtos">
+					</div> 
+				    <button type="submit" class="btn btn-success">Enviar</button>
+				</form>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+            $(function () {
+            	//Adiciona mascara para os campos
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+                $('#datetimepicker2').datetimepicker({
+                    format:"DD/MM/YYYY"                   
+                });
+            });
+        </script>
+	</body>
+</html>

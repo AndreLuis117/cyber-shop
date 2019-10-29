@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,8 +25,8 @@ public class StockInput {
 	private Date date;
 	private float quantity;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Product> products = new ArrayList<Product>();
+	@OneToOne(cascade=CascadeType.ALL)
+	private Product product = new Product();
 	
 	public long getEntryId() {
 		return entryId;
@@ -45,11 +46,11 @@ public class StockInput {
 	public void setQuantity(float quantity) {
 		this.quantity = quantity;
 	}
-	public List<Product> getProducts() {
-		return products;
+	public Product getProduct() {
+		return product;
 	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProducts(Product product) {
+		this.product = product;
 	}
 
 	

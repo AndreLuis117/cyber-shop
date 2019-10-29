@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/home-admin")
+@RequestMapping(value= {"/home-admin", "/"})
 public class HomeAdminController {
 
 	@GetMapping()

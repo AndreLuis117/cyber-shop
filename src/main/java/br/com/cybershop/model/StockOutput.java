@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 
 @Entity
 public class StockOutput {
@@ -21,10 +23,14 @@ public class StockOutput {
 	private long exitId;
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date date;
-	private float quantity;
+	@Min(value=1, message="A quantidade de entrada deve ser igual ou maior que 1")
+	private long quantity;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Product product = new Product();
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Product> products = new ArrayList<Product>();
+	public StockOutput() {
+		setDate();
+	}
 	
 	public long getExitId() {
 		return exitId;
@@ -35,22 +41,21 @@ public class StockOutput {
 	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate() {
+		 Date dateNow = new Date();  
+		 this.date = dateNow;
 	}
-	public float getQuantity() {
+	public long getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(float quantity) {
+	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}
-	public List<Product> getProducts() {
-		return products;
+	public Product getProduct() {
+		return product;
 	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	
-	
-	
+
 }

@@ -9,5 +9,5 @@ import br.com.cybershop.model.StockInput;
 @Service
 public interface StockInputService {
 	List<StockInput> getAll();
-	void save(StockInput promotion);
+	void save(StockInput stockInput);
 }

@@ -6,10 +6,10 @@
 		<div class="container mt-3">
 		<div class="card">
 			  <div class="card-body"> <div></div>
-			    <h3 class="card-title">Nova entrada de produto</h3>
+			    <h3 class="card-title">Nova saída de produto</h3>
  			<div>
-				<form th:action="@{/stockInput/(form)}" th:object="${stockInput}" action="#" method="post">
-					<input type="hidden" id="txtid" th:field="*{entryId}" />
+				<form th:action="@{/stockOutput/(form)}" th:object="${stockOutput}" action="#" method="post">
+					<input type="hidden" id="txtid" th:field="*{exitId}" />
 				    <div class="form-group">
                         <label for="Product">Produto</label>
                         <select class="form-control" id="slcProduct" th:field="*{product}">

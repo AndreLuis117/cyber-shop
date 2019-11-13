@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -16,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Client {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long clientId;
@@ -68,7 +70,19 @@ public class Client {
 	@NotNull
 	@NotEmpty(message="Preencha este campo")
 	private String adressComplement;
+	@OneToOne
+	private User user;
 	
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser() {
+		this.user = new User();
+		this.user.setPassword(password);
+		this.user.setUsername(email);
+		this.user.setRole("client");
+	}
 	public String getAdressNumber() {
 		return adressNumber;
 	}

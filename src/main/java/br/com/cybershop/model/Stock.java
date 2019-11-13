@@ -12,35 +12,34 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 
-
 @Entity
-public class StockInput {
-	
-	
-	
+public class Stock {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long entryId;
+	private long stockId;
 	@Temporal(value=TemporalType.TIMESTAMP)
-	private Date date;
-	@Min(value=1, message="A quantidade de entrada deve ser igual ou maior que 1")
+	private Date dateOfLastUpdate;
+	@Min(value=1, message="A quantidade de estoque deve ser igual ou maior que 0")
 	private long quantity;
-	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Product product = new Product();
 	
-	public long getEntryId() {
-		return entryId;
+	public Stock() {
+		setDateOfLastUpdate();	
 	}
-	public void setEntryId(long entryId) {
-		this.entryId = entryId;
+	
+	public long getStockId() {
+		return stockId;
 	}
-	public Date getDate() {
-		return date;
+	public void setStockId(long stockId) {
+		this.stockId = stockId;
 	}
-	public void setDate() {
-	    Date dateNow = new Date();  
-		this.date = dateNow;
+	public Date getDateOfLastUpdate() {
+		return dateOfLastUpdate;
+	}
+	public void setDateOfLastUpdate() {
+		Date dateNow = new Date();  
+		this.dateOfLastUpdate = dateNow;
 	}
 	public long getQuantity() {
 		return quantity;
@@ -54,9 +53,7 @@ public class StockInput {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-	public StockInput() {
-		setDate();
-	}
+	
+	
 	
 }

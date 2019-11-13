@@ -11,7 +11,7 @@ public class LoginController {
 	
 	@GetMapping()
 	public ModelAndView index() {
-		 return new ModelAndView("login/login");
+		 return new ModelAndView("/login");
 	}
 
 }

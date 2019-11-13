@@ -6,32 +6,27 @@
 		<div class="container mt-3">
 		<div class="card">
 			  <div class="card-body">
-			  	<h3 class="card-title">Registro de entrada de produtos</h3>
+			  	<h3 class="card-title">Estoque</h3>
 			  </div>
 			</div>
 			 <br/>
 			<div class="card">
 			  	<div class="card-body">
-					<div class="button">
-						<a href="form.html" th:href="@{/stockInput/new}"
-						class="fa fa-plus-circle fa-5x" role="button" aria-hidden="true"></a>
-					</div>
-					<br/> 
-					<table class="table" id="stockInput">
+					<table class="table" id="stock">
 						<thead class="thead-light"> 
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">Produto</th>
 								<th scope="col">Quantidade</th>		
-								<th scope="col">Data</th>
+								<th scope="col">Data Ultima atualização</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr scope="row" th:each="onestockinput : ${stockInput}">
-								<td th:text="${onestockinput.entryId}"></td>
-								<td th:text="${onestockinput.product.name}"></td>
-								<td th:text="${onestockinput.quantity}"></td>
-								<td th:text="${#dates.format(onestockinput.date, 'dd/MM/yyyy hh:mm')}"></td>
+							<tr scope="row" th:each="onestock : ${stock}">
+								<td th:text="${onestock.stockId}"></td>
+								<td th:text="${onestock.product.name}"></td>
+								<td th:text="${onestock.quantity}"></td>
+								<td th:text="${#dates.format(onestock.dateOfLastUpdate, 'dd/MM/yyyy hh:mm')}"></td>
 							</tr>
 						</tbody>
 					</table>

@@ -40,6 +40,7 @@ public class ClientController {
 		if(result.hasErrors()) {
 			return new ModelAndView("client/form");
 		}
+		client.setUser();
 		clientService.save(client);
 		return new ModelAndView("redirect:/client");
 	}
@@ -50,6 +51,7 @@ public class ClientController {
 		if(result.hasErrors()) {
 			return new ModelAndView("client/details-edit");
 		}
+		client.setUser();
 		clientService.save(client);
 		return new ModelAndView("redirect:/client");
 	}

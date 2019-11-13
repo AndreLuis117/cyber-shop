@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.cybershop.model.Client;
 import br.com.cybershop.repository.ClientRepository;
+import br.com.cybershop.repository.UserRepository;
 import br.com.cybershop.service.ClientService;
 
 @Service
@@ -16,6 +17,9 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ClientRepository repository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Override
 	public List<Client> getAll() {
 		return repository.findAll();
@@ -23,6 +27,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public void save(Client client) {
+		userRepository.save(client.getUser());
 		repository.save(client);
 	}
 

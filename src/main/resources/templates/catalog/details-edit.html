@@ -6,21 +6,21 @@
 		<div class="container mt-3">
 		<div class="card">
 			  <div class="card-body"> <div></div>
-			    <h3 class="card-title">Catalogo</h3>
+			    <h5 id="headerMsg" class="card-title">Catalogo</h5>
  			<div>
-				<form th:action="@{/catalog/(catalogdetails-edit)}" th:object="${catalog}" action="#" method="post">
+				<form th:action="@{/catalog/(details-edit)}" th:object="${catalog}" action="#" method="post">
 					<input type="hidden" id="txtid" th:field="*{catalogId}" />
 				    <div class="form-group">
 				        <label for="txtname">Nome do Catalogo</label>
 				        <input type="text" th:field="*{name}" class="form-control" 
-				        id="txtname" placeholder="Nome do Catalogo" >
+				        id="txtname" placeholder="Nome do Catalogo">
 				        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" style="margin-top: 10px;"></p>
 				    </div>
 				   <div class="form-group">
 	                        <label for="txtDate">Data Limite</label>
 	                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 	                            <input id = "deadLine" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="dd/mm/yyyy" size="8" maxlength="8"
-	                                th:field="*{deadLine}" required/>
+	                                th:field="*{deadLine}"/>
 	                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>
@@ -40,7 +40,7 @@
                    				  </div>
                                   </div>
                                   <div class="col-sm">
-                                    <button type="submit" name="insertproc" class="btn btn-primary">Inserir item</button>
+                                    <button type="submit" id="insertproc" class="btn btn-primary">Inserir item</button>
                                 </div>
                               </div>
                             </div>
@@ -59,14 +59,14 @@
                                         <td th:text="${catalog.catalogItems[__${stat.index}__].product.name}"></td>
                                         <td th:text="${catalog.catalogItems[__${stat.index}__].product.unitPrice}"></td>
                                         <td>
-                                            <button type="submit" name="removeproc" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
+                                            <button type="submit" id="removeproc" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>                           
                         </div>
                         </div>
-				    <button type="submit" name="save" class="btn btn-success">Enviar</button>
+                    <button type="submit" name="save" class="btn btn-success">Enviar</button>
 				</form>
 			</div>
 		</div>
@@ -74,22 +74,12 @@
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 		<script type="text/javascript">
-		$(function(){
-			 
-			 $("#editButton").click(function() {
-			 document.getElementById("txtname").disabled = false;
-			 document.getElementById("slcProduct").disabled = false;
-			 document.getElementById("deadLine").disabled = false;
-			 document.getElementById("send").style.display = "block";
-			 $('#headerMsg').text('Editar catalogo');
-			 });
-		 })
          $(function () {
             	//Adiciona mascara para os campos
                 $('#datetimepicker1').datetimepicker({
                     format:"DD/MM/YYYY"                   
                 });    
-            });
+         });
         </script>
 	</body>
 </html>

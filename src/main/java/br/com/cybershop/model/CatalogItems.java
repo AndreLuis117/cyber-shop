@@ -44,5 +44,40 @@ public class CatalogItems {
 		this.product = product;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((catalog == null) ? 0 : catalog.hashCode());
+		result = prime * result + (int) (catalogItemsId ^ (catalogItemsId >>> 32));
+		result = prime * result + ((product == null) ? 0 : product.hashCode());
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CatalogItems other = (CatalogItems) obj;
+		if (catalog == null) {
+			if (other.catalog != null)
+				return false;
+		} else if (!catalog.equals(other.catalog))
+			return false;
+		if (catalogItemsId != other.catalogItemsId)
+			return false;
+		if (product == null) {
+			if (other.product != null)
+				return false;
+		} else if (!product.equals(other.product))
+			return false;
+		return true;
+	}
+
+
+	
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout ::htmlhead"></head>
+	<body>
+	<nav th:replace="layout :: menu"(menu)></nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body">
+			  	<h3 class="card-title">Produtos</h3>
+			  </div>
+			</div>
+			<br/>
+			<div>
+			 </div>
+			 <div class="row mt-3">
+				<div class="col-12 col-sm-3" th:each="oneproduct : ${product}">
+					<div class="card">
+					  <div class="card-body">
+					    <h5 class="card-title" th:text="${oneproduct.name}"></h5>
+					    <div>
+					    	<h5 class="card-title" th:text="${'R$ '}+${oneproduct.unitPrice}"></h5>
+					    </div>
+					    <a href="#" class="btn btn-primary">Comprar</a>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>

@@ -28,7 +28,8 @@
 			<tbody>
 				<tr scope="row" th:each="oneproductCategory : ${productCategory}">
 					<td th:text="${oneproductCategory.name}"></td>
-					<td th:text="${oneproductCategory.status}"></td>
+					<td th:if="${oneproductCategory.status}">Ativo</td>
+					<td th:if="${!oneproductCategory.status}">Inativo</td>
 					<td> <a th:href="@{'productCategory/details-edit/' + ${oneproductCategory.categoryId}}" class= "btn btn-primary btn-lg"><i class="fa fa-list-alt" aria-hidden="true"></i></a></td>
 				</tr>
 			</tbody>

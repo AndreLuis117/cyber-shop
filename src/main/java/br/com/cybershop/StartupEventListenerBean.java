@@ -20,8 +20,16 @@ public void onApplicationEvent(ContextRefreshedEvent event) {
 	User user = new User();
 	user.setUsername("user");
 	user.setPassword("user");
-	user.setRole("ROLE_USER");
+	user.setRole("client");
+	
+	User user2 = new User();
+	user2.setUsername("admin");
+	user2.setPassword("admin");
+	user2.setRole("admin");
+	
 	userRepository.save(user);
+	userRepository.save(user2);
+
 	}
 	
 	}

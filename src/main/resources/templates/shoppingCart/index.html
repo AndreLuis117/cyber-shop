@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout ::htmlhead"></head>
+	<body>
+	<nav th:replace="layoutClient :: menu"(menu)></nav>
+		<div class="container mt-3">
+		<div class="card">
+			  <div class="card-body">
+			  	<h3 class="card-title">Carrinho de compras</h3>
+			  </div>
+			</div>
+			 <br/>
+			<div class="card">
+			  	<div class="card-body">
+					<table class="table" id="promotion">
+						<thead class="thead-light"> 
+							<tr>
+								<th scope="col">Produto</th>
+								<th scope="col">Preço</th>
+								<th scope="col">Quantidade</th>		
+							</tr>
+						</thead>
+						<tbody>
+							<tr scope="row" th:each="oneitem : ${shoppingcart.itens}">
+								<td th:text="${oneitem.product.name}"></td>
+							</tr>
+						</tbody>
+					</table>
+		 		</div>
+			</div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>

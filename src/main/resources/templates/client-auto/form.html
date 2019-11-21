@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:include="layout :: htmlhead"></head>
 	<body>
-	<nav th:replace="layoutClient :: menu">(menu)</nav>
 		<div class="container mt-3">
 			
 					<form th:action="@{/client-auto/(form)}" th:object="${client}" action="#" method="post">

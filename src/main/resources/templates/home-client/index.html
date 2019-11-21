@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layoutClient ::htmlhead"></head>
+	<body>
+		<nav th:replace="layoutClient :: menu"(menu)></nav>
+		<div class="container mt-3">
+			<div class="card">
+			  <div class="card-body" >
+			  	<h3 class="card-title">Seja bem vindo ao CyberShop!</h3>
+			  </div>
+			</div>
+			    <br/>
+			  <div class="card">
+			  	
+			  		<div class="card-body" style="background-color:#DCDCDC">
+			  			
+				        </div>			      
+			 </div>
+		</div>
+		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+				$(document).ready(function(){
+					$("#clients").on("click", ".js-delete", function(){
+						var button = $(this);
+						bootbox.confirm("Você tem certeza que deseja excluir este cliente?",function(result){
+							if(result){
+								$.ajax({
+									url:"/client/delete/" + button.attr("data-customer-id"),
+									method: "GET",
+									success: function(){
+										window.location.href = "/client/"
+									}
+								});
+							}
+						});
+					});
+				});
+		</script>
+	</body>
+</html>

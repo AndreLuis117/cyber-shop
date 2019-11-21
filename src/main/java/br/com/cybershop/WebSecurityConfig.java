@@ -11,16 +11,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import br.com.cybershop.service.impl.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
 	@Autowired
 	private MyUserDetailsService userDetailsService;
+	
+	@Autowired
+    public WebSecurityConfig(AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,8 +62,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.formLogin()
 		.loginPage("/login")
-		.successForwardUrl("/home-admin")
-		.defaultSuccessUrl("/home-admin", true)
+		.successHandler(authenticationSuccessHandler)
+		/*.successForwardUrl("/home-admin")
+		.defaultSuccessUrl("/home-admin", true)*/
 		.permitAll(true);
 		
 	}
@@ -63,4 +72,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
+	
+	
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("client").password("pass").roles("client")
+                .and()
+                .withUser("admin").password("pass").roles("admin");
+    }
 }
